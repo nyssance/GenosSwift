@@ -1,0 +1,96 @@
+/// 通用.
+ok = "Ok";
+cancel = "Cancel";
+yes = "Yes";
+no = "No";
+open = "Open";
+close = "Close";
+success = "Success";
+submit = "Submit";
+version = "Version";
+
+no_data_available = "No Data Available";
+
+debug = "Debug";
+
+notifications = "Notifications";
+
+id = "ID";
+
+all = "All";
+region = "Region";
+
+created_time = "Created Time";
+updated_time = "Updated Time";
+start_time = "Start Time";
+end_time = "End Time";
+
+review = "Review";
+
+camera = "Camera";
+photos = "Photos";
+
+/// 菜单.
+home = "Home";
+discover = "Discover";
+questions = "Questions";
+me = "Me";
+settings = "Settings";
+support = "Support";
+help = "Help";
+feedback = "Feedback";
+about = "About";
+developer = "Developer";
+
+/// 个人信息.
+profile = "Profile";
+nickname = "Nickname";
+avatar = "Avatar";
+gender = "Gender";
+male = "Male";
+female = "Female";
+qr_code = "QR Code";
+phone_number = "Phone Number";
+id_card_number = "Id Card Number";
+
+/// 评论和喜欢.
+comment = "Comment";
+comments = "Comments";
+like = "Like";
+likes = "Likes";
+order = "Order";
+orders = "Orders";
+order_id = "Order Id";
+order_detail = "Order Detail";
+
+name = "Name";
+
+amount = "Amount";
+price = "Price";
+total_fee = "Total Fee";
+
+description = "Description";
+type = "Type";
+status = "Status";
+buy = "Buy";
+
+/// 登陆.
+sign_up = "Sign Up";
+sign_in = "Sign In";
+sign_out = "Sign Out";
+
+/// 用户.
+username = "Username";
+password = "Password";
+email = "Email";
+optional = "Optional";
+
+/// Action.
+share = "Share";
+repost = "Repost";
+
+/// 社会化.
+facebook = "Facebook";
+twitter = "Twitter";
+weibo = "Weibo";
+weixin = "WeChat";

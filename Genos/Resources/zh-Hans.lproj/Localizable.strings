@@ -1,0 +1,96 @@
+/// 通用.
+ok = "好";
+cancel = "取消";
+yes = "是";
+no = "否";
+open = "打开";
+close = "关闭";
+success = "成功";
+submit = "提交";
+version = "版本";
+
+no_data_available = "没有数据";
+
+debug = "Debug";
+
+notifications = "通知";
+
+id = "ID";
+
+all = "全部";
+region = "地区";
+
+created_time = "创建时间";
+updated_time = "更新时间";
+start_time = "开始时间";
+end_time = "结束时间";
+
+review = "评分";
+
+camera = "相机";
+photos = "照片";
+
+/// 菜单.
+home = "主页";
+discover = "发现";
+questions = "问答";
+me = "我";
+settings = "设置";
+support = "支持";
+help = "帮助";
+feedback = "反馈";
+about = "关于";
+developer = "开发者";
+
+/// 个人信息.
+profile = "个人信息";
+nickname = "昵称";
+avatar = "头像";
+gender = "性别";
+male = "男";
+female = "女";
+qr_code = "二维码";
+phone_number = "电话号码";
+id_card_number = "身份证号";
+
+/// 评论和喜欢.
+comment = "评论";
+comments = "评论";
+like = "喜欢";
+likes = "喜欢";
+order = "订单";
+orders = "订单";
+order_id = "订单号";
+order_detail = "订单详情";
+
+name = "名称";
+
+price = "价格";
+amount = "金额";
+total_fee = "总金额";
+
+description = "描述";
+type = "类型";
+status = "状态";
+buy = "购买";
+
+/// 登陆.
+sign_up = "注册";
+sign_in = "登录";
+sign_out = "退出登录";
+
+/// 用户.
+username = "用户名";
+password = "密码";
+email = "邮件";
+optional = "选填";
+
+/// Action.
+share = "分享";
+repost = "转发";
+
+/// 社会化.
+facebook = "Facebook";
+twitter = "Twitter";
+weibo = "微博";
+weixin = "微信";
