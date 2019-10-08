@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = 'Genos'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.license          = 'MIT'
   s.homepage         = 'https://github.com/nyssance/GenosSwift'
   s.author           = { 'NY' => 'nyssance@icloud.com' }
   s.summary          = 'The BEST high-level framework for iOS by NY.'
-  s.source           = { :git => 'https://github.com/nyssnace/GenosSwift.git', :tag => s.version }
+  s.source           = { :git => 'https://github.com/nyssance/GenosSwift.git', :tag => s.version }
   s.swift_versions   = ['5.0', '5.1']
   s.ios.deployment_target = '11.0'
   s.source_files     = 'Genos/Sources/**/*.swift'
