@@ -21,7 +21,7 @@ open class TableListController<D: Decodable, T: Decodable, V: UITableViewCell>: 
         return page > LIST_START_PAGE
     }
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onDisplay(data: D) {
         nextPage += 1

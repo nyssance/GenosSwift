@@ -3,7 +3,7 @@
 //
 
 open class TextFieldUpdate<D: Decodable, T: Field, V: UITableViewCell>: TextFieldForm<D, T, V> {
-    // MARK: - 🐤 Genos
+    // MARK: - 👊 Genos
 
     open override func onDisplay(data: D) {
         super.onDisplay(data: data)

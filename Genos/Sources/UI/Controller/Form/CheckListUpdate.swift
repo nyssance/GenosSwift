@@ -3,7 +3,7 @@
 //
 
 open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, ItemCell> { // CheckList时候只有update, 没有create的情况
-    // MARK: - 🐤 Genos
+    // MARK: - 👊 Genos
 
     open override func onCreate() {
         super.onCreate()

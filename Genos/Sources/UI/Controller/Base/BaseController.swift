@@ -79,7 +79,7 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
         SwiftEventBus.unregister(self)
     }
 
-    // MARK: - 💟 加载数据 🐤 子类必须调用
+    // MARK: - 💟 加载数据, 子类必须调用
 
     public func onBeforeCreate() {}
 

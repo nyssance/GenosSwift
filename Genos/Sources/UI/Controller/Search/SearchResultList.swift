@@ -3,7 +3,7 @@
 //
 
 open class SearchResultList<V: UITableViewCell>: TableViewList<SearchResult, V>, UISearchResultsUpdating {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onCreate() {
         adapter.addList([SearchResult(title: "aaa"), SearchResult(title: "bbb"), SearchResult(title: "ccc")])

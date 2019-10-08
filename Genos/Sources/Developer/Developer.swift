@@ -5,7 +5,7 @@
 import SwiftyUserDefaults
 
 public class Developer: TableViewDetail<String, Item, ItemCell> {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     public override func onCreate() {
         setNavigationBar(style: .default, from: "developer")

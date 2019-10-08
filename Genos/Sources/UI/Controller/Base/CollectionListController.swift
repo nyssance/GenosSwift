@@ -37,7 +37,7 @@ open class CollectionListController<D: Decodable, T: Decodable, V: UICollectionV
         return page > LIST_START_PAGE
     }
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onDisplay(data: D) {
         nextPage += 1

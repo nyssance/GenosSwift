@@ -3,7 +3,7 @@
 //
 
 open class CreateController<D: Decodable, T: Field, V: UITableViewCell>: FormController<D, T, V> {
-    // MARK: - 🐤 Genos
+    // MARK: - 👊 Genos
 
     public final override func onSubmit(_ parameters: [String: String]) {
         if call?.method != .post {

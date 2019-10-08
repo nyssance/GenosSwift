@@ -5,7 +5,7 @@
 open class TableSearch: TableViewList<String, UITableViewCell>, UISearchBarDelegate {
     var searchController: UISearchController!
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onViewCreated() {
         searchController = UISearchController()

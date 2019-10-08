@@ -15,7 +15,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
 
     public var segmentedControl: HMSegmentedControl?
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     override func onCreateView() {
         var y = segmentedControl?.frame.height ?? 0
@@ -43,15 +43,15 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
         (listView as? ListViewConnectable)?.reloadData()
     }
 
-    // MARK: - 💛 绘制单元项 🐤 子类必须调用
+    // MARK: - 💛 绘制单元项, 子类必须调用
+
+    open func onGetItemViewType(_ indexPath: IndexPath) -> Int {
+        return 0
+    }
 
     open func onDisplayItem(item: T, view: V, viewType: Int) {
         fatalError("这个方法必须被覆盖")
         // assert(false, "This method must be overriden")
-    }
-
-    open func onGetItemViewType(_ indexPath: IndexPath) -> Int {
-        return 0
     }
 
     open func onOpenItem(item: T) {

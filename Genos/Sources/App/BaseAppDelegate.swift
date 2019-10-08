@@ -44,7 +44,7 @@ open class BaseAppDelegate: UIResponder, UIApplicationDelegate {
         log.error("APNs 注册失败 \(error.localizedDescription)")
     }
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open func onFinishLaunching(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {}
 

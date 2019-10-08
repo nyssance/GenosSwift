@@ -3,7 +3,7 @@
 //
 
 open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionViewCell>: AbsListViewController<D, T, UICollectionView, V>, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     public override func onCreateListView(y: CGFloat) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()

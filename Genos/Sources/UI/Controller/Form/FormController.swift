@@ -12,7 +12,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
 
     public var parameters: [String: String] = [:]
 
-    // MARK: - 🐤 Genos
+    // MARK: - 👊 Genos
 
     open override func onCreate() {
         refreshMode = .never // 表单页默认不刷新

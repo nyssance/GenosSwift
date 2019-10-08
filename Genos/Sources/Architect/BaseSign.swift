@@ -3,7 +3,7 @@
 //
 
 open class BaseSign<D: Decodable, V: UITableViewCell>: TextFieldForm<D, Field, V> {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onCreate() {
         super.onCreate()

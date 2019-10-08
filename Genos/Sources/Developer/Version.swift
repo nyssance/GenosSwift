@@ -3,7 +3,7 @@
 //
 
 public class Version: TableViewDetail<String, Item, ItemCell> {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     public override func onCreate() {
         title = "version".locale

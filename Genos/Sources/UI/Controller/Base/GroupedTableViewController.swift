@@ -6,7 +6,7 @@ open class GroupedTableViewController<D: Decodable, T: BaseItem, V: UITableViewC
     public var items: [[T]] = [] // NY: 默认菜单项, 默认为多组, 不能初始化为[[]], 这样items.count为1而不是0
     public var mirror: Mirror?
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     public override func onBeforeCreate() {
         refreshControlMode = .never

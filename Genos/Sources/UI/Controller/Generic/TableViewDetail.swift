@@ -3,7 +3,7 @@
 //
 
 open class TableViewDetail<D: Decodable, T: Item, V: UITableViewCell>: GroupedTableViewController<D, T, V> {
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     public override func onBeforeCreate() {
         super.onBeforeCreate()

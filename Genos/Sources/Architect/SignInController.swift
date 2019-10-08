@@ -10,7 +10,7 @@ open class SignInController<D: Decodable, V: UITableViewCell>: BaseSign<D, V> {
         submitButton.setTitle("sign_in".locale, for: .normal)
     }
 
-    // MARK: - 🐤 Taylor
+    // MARK: - 👊 Genos
 
     open override func onCreate() {
         super.onCreate()

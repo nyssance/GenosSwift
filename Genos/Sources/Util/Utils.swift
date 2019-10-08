@@ -18,9 +18,9 @@ public struct Utils {
 
     // 多语言
     public static func localizedString(_ key: String) -> String {
-        if let path = Bundle(for: BaseController.self).path(forResource: "Taylor", ofType: "bundle"), let taylor = Bundle(path: path) {
+        if let path = Bundle(for: BaseController.self).path(forResource: "Genos", ofType: "bundle"), let bundle = Bundle(path: path) {
             let value = NSLocalizedString(key, comment: "")
-            return key != value ? value : NSLocalizedString(key, bundle: taylor, comment: "")
+            return key != value ? value : NSLocalizedString(key, bundle: bundle, comment: "")
         }
         return key
     }
