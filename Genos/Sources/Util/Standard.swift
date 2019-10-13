@@ -2,24 +2,29 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-protocol Standard {}
+// SO https://stackoverflow.com/questions/47586520/is-there-an-kotlin-equivalent-with-function-in-swift/#47587455
+public protocol Standard {}
 
-extension Standard {
-    func with(_ receiver: Any?, block: (_ this: Self) -> Void) {
-        block(self)
+public extension Standard {
+    @inline(__always)
+    func with<T>(_ this: T, block: (T) -> () -> T) -> T {
+        block(this)()
     }
 
-    func apply(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
-    }
-
-    func also(_ block: (Self) -> Void) -> Self {
+    @inline(__always)
+    func apply(block: (Self) -> Void) -> Self {
         block(self)
         return self
     }
 
-    func `let`(_ block: (Self) -> Void) {
+    @inline(__always)
+    func also(block: (Self) -> Void) -> Self {
+        block(self)
+        return self
+    }
+
+    @inline(__always)
+    func `let`<R>(block: (Self) -> R) -> R {
         block(self)
     }
 
@@ -27,7 +32,7 @@ extension Standard {
 //        contract {
 //            callsInPlace(block, InvocationKind.EXACTLY_ONCE)
 //        }
-//        return receiver.block()
+//        receiver.block()
 //    }
 }
 

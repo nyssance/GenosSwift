@@ -2,9 +2,9 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-extension UILabel {
+public extension UILabel {
     @discardableResult
-    public func setText(_ text: String?, fit: Bool = true) -> CGSize {
+    func setText(_ text: String?, fit: Bool = true) -> CGSize {
         self.text = text
         if fit {
             sizeToFit()
@@ -13,7 +13,7 @@ extension UILabel {
     }
 
     @discardableResult
-    public func setAttributedText(_ text: NSAttributedString, fit: Bool = true) -> CGSize {
+    func setAttributedText(_ text: NSAttributedString, fit: Bool = true) -> CGSize {
         attributedText = text
         if fit {
             sizeToFit()

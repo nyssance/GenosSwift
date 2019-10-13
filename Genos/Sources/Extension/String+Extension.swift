@@ -2,8 +2,8 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-extension String {
-    public func trimmed(set: CharacterSet = .whitespaces) -> String {
+public extension String {
+    func trimmed(set: CharacterSet = .whitespaces) -> String {
         trimmingCharacters(in: set)
     }
 
@@ -18,7 +18,7 @@ extension String {
     /// - Returns: A camel case copy of the string.
     ///
     /// - Complexity: O(*n*)
-    public func camelCased(separator: String = "_") -> String {
+    func camelCased(separator: String = "_") -> String {
         if isBlank {
             return self
         }
@@ -38,7 +38,7 @@ extension String {
     /// - Returns: An underscore copy of the string.
     ///
     /// - Complexity: O(*n*)
-    public func underscored() -> String { // TODO: 待优化
+    func underscored() -> String { // TODO: 待优化
         var s = ""
         enumerated().forEach { offset, element in
             let str = String(element)
@@ -55,25 +55,25 @@ extension String {
         return s
     }
 
-    public var locale: String { Utils.localizedString(self) }
+    var locale: String { Utils.localizedString(self) }
 
-    public var localeSystem: String { // Bundle(for: UIButton.self) 也可
+    var localeSystem: String { // Bundle(for: UIButton.self) 也可
         if let bundle = Bundle(identifier: "com.apple.UIKit") {
             return NSLocalizedString(self, bundle: bundle, comment: "")
         }
         return self
     }
 
-    public var isBlank: Bool { trimmed().isEmpty }
+    var isBlank: Bool { trimmed().isEmpty }
 
-    public var isNotBlank: Bool { !isBlank }
+    var isNotBlank: Bool { !isBlank }
 
     /// 计算字符串高度.
-    public func size(width: Double, font: UIFont) -> CGSize {
-        boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
+    func size(width: Double, font: UIFont) -> CGSize {
+        self.boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
     }
 
-    public func size(font: UIFont) -> CGSize {
+    func size(font: UIFont) -> CGSize {
         size(width: .greatestFiniteMagnitude, font: font)
     }
 }

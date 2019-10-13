@@ -30,16 +30,16 @@ public protocol Config {
     static func onViewWillDisappear(_ controller: UIViewController)
 }
 
-extension Config {
-    public static func config() {
+public extension Config {
+    static func config() {
         JSON_DECODER.dateDecodingStrategy = .iso8601
         print("empty")
 //        showAlert(nil, message: "程序员请设置配置")
     }
 
-    public static func onViewWillAppear(_ controller: UIViewController) {}
+    static func onViewWillAppear(_ controller: UIViewController) {}
 
-    public static func onViewWillDisappear(_ controller: UIViewController) {}
+    static func onViewWillDisappear(_ controller: UIViewController) {}
 }
 
 public struct Global: Config {}
@@ -57,7 +57,7 @@ public var SECOND_FORMAT = "yyyy-MM-dd HH:mm:ss"
 public var isDebug = Defaults[.debug]
 
 extension DefaultsKeys {
-    public static let test_env = DefaultsKey<Bool>("test_env", defaultValue: false)
+    static let test_env = DefaultsKey<Bool>("test_env", defaultValue: false)
     static let debug = DefaultsKey<Bool>("debug", defaultValue: false)
 }
 

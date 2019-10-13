@@ -11,7 +11,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
     public var data = ""
 
     public var webView: WKWebView!
-    var textLayer = CATextLayer()
+    var textLayer: CATextLayer!
     public var backButton: UIBarButtonItem!
     public var forwardButton: UIBarButtonItem!
     public var refreshButton: UIBarButtonItem!
@@ -25,21 +25,23 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
     public final override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: 1. 识别再链出去的标题, 2. 增加再链出去的返回功能
-        let config = WKWebViewConfiguration()
-        // SO https://stackoverflow.com/questions/40884138/error-when-using-wkaudiovisualmediatypenone-in-swift-3
-        config.mediaTypesRequiringUserActionForPlayback = []
-        webView = WKWebView(frame: view.frame, configuration: config)
-        UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")?.let {
-            webView.customUserAgent = "\($0) CM.Genos.iOS/\(InfoPlistUtils.APP_VERSION)" // TODO: 改为appbunle
+        let config = WKWebViewConfiguration().apply {
+            // SO https://stackoverflow.com/questions/40884138/error-when-using-wkaudiovisualmediatypenone-in-swift-3
+            $0.mediaTypesRequiringUserActionForPlayback = []
         }
-        if navigationController != nil {
-            navigationItem.largeTitleDisplayMode = .never
-            edgesForExtendedLayout = []
-            webView.frame.size.height = webView.frame.height - topBarHeight
-            webView.scrollView.clipsToBounds = false // 上滑时导航栏保持半透明效果
+        webView = WKWebView(frame: view.frame, configuration: config).apply { it in
+            UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")?.let {
+                it.customUserAgent = "\($0) CM.Genos.iOS/\(InfoPlistUtils.APP_VERSION)" // TODO: 改为appbunle
+            }
+            if navigationController != nil {
+                navigationItem.largeTitleDisplayMode = .never
+                edgesForExtendedLayout = []
+                it.frame.size.height = webView.frame.height - topBarHeight
+                it.scrollView.clipsToBounds = false // 上滑时导航栏保持半透明效果
+            }
+            it.navigationDelegate = self
+            it.uiDelegate = self
         }
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
         observation = webView.observe(\.estimatedProgress) { _, _ in
             func isHttp(_ url: URL?) -> Bool {
                 switch url?.scheme {
@@ -62,12 +64,13 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         }
         view.backgroundColor = .colorWithHex(0x2E3132)
         view.addSubview(webView)
-        do { // 背景
-            textLayer.fontSize = UIFont.systemFontSize
-            textLayer.contentsScale = UIScreen.main.scale
-            textLayer.alignmentMode = CATextLayerAlignmentMode.center
-            view.layer.insertSublayer(textLayer, at: 0)
+        // 背景
+        textLayer = CATextLayer().apply { it in
+            it.fontSize = UIFont.systemFontSize
+            it.contentsScale = UIScreen.main.scale
+            it.alignmentMode = CATextLayerAlignmentMode.center
         }
+        view.layer.insertSublayer(textLayer, at: 0)
         do { // 导航栏和工具栏
             if isDebug {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.ellipsisH), size: .appBarIcon), style: .plain, target: self, action: #selector(more))

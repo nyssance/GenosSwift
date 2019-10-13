@@ -6,13 +6,15 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
     // MARK: - 👊 Genos
 
     public override func onCreateListView(y: CGFloat) -> UICollectionView {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.prefetchDataSource = self
-        collectionView.delegate = self
-        collectionView.register(V.self, forCellWithReuseIdentifier: tileId)
+        let layout = UICollectionViewFlowLayout().apply {
+            $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), collectionViewLayout: layout).apply { it in
+            it.dataSource = self
+            it.prefetchDataSource = self
+            it.delegate = self
+            it.register(V.self, forCellWithReuseIdentifier: tileId)
+        }
         return collectionView
     }
 

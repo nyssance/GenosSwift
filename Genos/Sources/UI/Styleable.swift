@@ -6,13 +6,13 @@ public protocol Styleable {
     var theme: Theme? { get set }
 }
 
-extension Styleable where Self: UIViewController {
-    public func getTheme() -> Theme {
+public extension Styleable where Self: UIViewController {
+    func getTheme() -> Theme {
         theme ?? APP_THEME
     }
 
     // swiftlint:disable function_body_length
-    public func setNavigationBar(style: Theme.BarStyle, color: UIColor? = nil, image: UIImage? = nil, showTitle: Bool = false, from: String) {
+    func setNavigationBar(style: Theme.BarStyle, color: UIColor? = nil, image: UIImage? = nil, showTitle: Bool = false, from: String) {
         log.verbose("\(style) \(from)")
         navigationController?.navigationBar.let { navigationBar in
             switch style {
@@ -65,28 +65,28 @@ extension Styleable where Self: UIViewController {
                 setNav(navigationBar)
             }
         }
-    }
 
-    func setNav(_ navigationBar: UINavigationBar) {
-        extendedLayoutIncludesOpaqueBars = true
-        navigationBar.setBackgroundImage(nil, for: .default)
-        navigationBar.shadowImage = nil
-        navigationBar.barStyle = .default
-        navigationBar.barTintColor = nil
-        navigationBar.tintColor = getTheme().navigationBarTintColor
-        navigationBar.isTranslucent = true
-        navigationBar.titleTextAttributes = getTheme().titleTextAttributes
-        navigationBar.largeTitleTextAttributes = getTheme().largeTitleTextAttributes
+        func setNav(_ navigationBar: UINavigationBar) {
+            extendedLayoutIncludesOpaqueBars = true
+            navigationBar.setBackgroundImage(nil, for: .default)
+            navigationBar.shadowImage = nil
+            navigationBar.barStyle = .default
+            navigationBar.barTintColor = nil
+            navigationBar.tintColor = getTheme().navigationBarTintColor
+            navigationBar.isTranslucent = true
+            navigationBar.titleTextAttributes = getTheme().titleTextAttributes
+            navigationBar.largeTitleTextAttributes = getTheme().largeTitleTextAttributes
+        }
     }
 
     /// 隐藏返回菜单.
     /// 1. 如果目标 Controller 需求效果不同, 放在 onSegue 中判断不同 destination 调用, 但横滑一半再返回可能出问题.
     /// 2. 如果相同, 在 viewWillAppear 调用, 不能在 onCreate中 调用, 为了实现 1, 每次在 viewWillAppear 中做了还原, 未继承 BaseController时 使用效果 1 需要手动还原.
-    public func setBackBarButtonItem(title: String?) {
+    func setBackBarButtonItem(title: String?) {
         navigationItem.backBarButtonItem = title == nil ? nil : UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
     }
 
-    public func setToolbar(style: Theme.BarStyle) {
+    func setToolbar(style: Theme.BarStyle) {
         switch style {
         case .transparent: // 透明工具栏
             navigationController?.toolbar.let { it in

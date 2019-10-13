@@ -26,15 +26,16 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
     // MARK: - 👊 Genos
 
     public override func onCreateListView(y: CGFloat) -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), style: tableViewStyle)
-        tableView.dataSource = self
-        tableView.prefetchDataSource = self
-        tableView.delegate = self
-        if tableView.style == .plain { // 在plain模式下处理
-            tableView.tableFooterView = UIView() // 无数据时不显示分割线, 参见DZNEmptyDataSet文档
-            view.backgroundColor = .white // 保证有segment时返回顶部不会少一截
-        } else { // grouped
-//            tableView.contentInset.bottom = GROUP_TABLE_BOTTOM_HEIGHT - GROUP_TABLE_SECTION_FOOTER_HEIGHT
+        let tableView = UITableView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), style: tableViewStyle).apply { it in
+            it.dataSource = self
+            it.prefetchDataSource = self
+            it.delegate = self
+            if it.style == .plain { // 在plain模式下处理
+                it.tableFooterView = UIView() // 无数据时不显示分割线, 参见DZNEmptyDataSet文档
+                view.backgroundColor = .white // 保证有segment时返回顶部不会少一截
+            } else { // grouped
+//                it.contentInset.bottom = GROUP_TABLE_BOTTOM_HEIGHT - GROUP_TABLE_SECTION_FOOTER_HEIGHT
+            }
         }
         return tableView
     }

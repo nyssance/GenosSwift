@@ -20,10 +20,11 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
         if y > 0 { // TODO: 临时使用这个方法调整正确高度
             y += topBarHeight
         }
-        listView = onCreateListView(y: y)
-        listView.alwaysBounceVertical = true // 永远可拖动
-        listView.backgroundColor = getTheme().colorBackground
-        listView.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
+        listView = onCreateListView(y: y).apply { it in
+            it.alwaysBounceVertical = true // 永远可拖动
+            it.backgroundColor = getTheme().colorBackground
+            it.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
+        }
         view.addSubview(listView)
         segmentedControl?.let {
             view.addSubview($0)
@@ -69,14 +70,14 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
     /// 处理light风格的滚动, 需要在TableViewController和CollectionViewController中分别继承
     open func onScrollViewDidScroll(_ scrollView: UIScrollView) {
         log.verbose("系统主题: \(String(describing: APP_THEME.navigationBarStyle)), 自定义主题: \(String(describing: theme != nil ? theme!.navigationBarStyle : nil)), 当前TopBar高度: \(topBarHeight)")
-        if navigationController != nil, getTheme().navigationBarStyle == .light { // iOS 11之后的light风格才判断
+        if let navigationBar = navigationController?.navigationBar, getTheme().navigationBarStyle == .light {
             if topBarHeight == TOP_BAR_HEIGHT, navigationController?.navigationBar.shadowImage != nil {
                 // iOS 11之后的light风格默认的线都去掉了, 无大标题的时候也需要需要补上, 利用scrollView进来默认刷一次的特性
-                navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-                navigationController?.navigationBar.shadowImage = nil
+                navigationBar.setBackgroundImage(nil, for: .default)
+                navigationBar.shadowImage = nil
             } else if (TOP_BAR_HEIGHT + 1)...(TOP_BAR_HEIGHT + 5) ~= topBarHeight {
-                navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                navigationController?.navigationBar.shadowImage = UIImage()
+                navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationBar.shadowImage = UIImage()
             }
         }
     }

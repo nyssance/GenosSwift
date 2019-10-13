@@ -20,29 +20,30 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
     override func onCreateView() {
         super.onCreateView()
         adapter.getCurrentList().enumerated().forEach { i, field in
-            let textField = field is PasswordField ? PasswordTextField() : UITextField()
-            textField.placeholder = field.placeholder
-            // 初始化
-            textField.autocapitalizationType = .none
-            textField.autocorrectionType = .no
-            textField.clearButtonMode = .whileEditing
-            textField.returnKeyType = .next
-            //
-            switch field {
-            case is NumberField:
-                textField.keyboardType = .numberPad
-            case is DecimalField:
-                textField.keyboardType = .decimalPad
-            default:
-                break
+            let textField = (field is PasswordField ? PasswordTextField() : UITextField()).apply { it in
+                it.placeholder = field.placeholder
+                // 初始化
+                it.autocapitalizationType = .none
+                it.autocorrectionType = .no
+                it.clearButtonMode = .whileEditing
+                it.returnKeyType = .next
+                //
+                switch field {
+                case is NumberField:
+                    it.keyboardType = .numberPad
+                case is DecimalField:
+                    it.keyboardType = .decimalPad
+                default:
+                    break
+                }
+                field.tag = i
+                it.tag = i // 定位
+                it.delegate = self
+                mirror?.let {
+                    it.text = getValue(field.name.camelCased(), mirror: $0) as? String
+                }
+                originalText = it.text ?? ""
             }
-            field.tag = i
-            textField.tag = i // 定位
-            textField.delegate = self
-            mirror?.let {
-                textField.text = getValue(field.name.camelCased(), mirror: $0) as? String
-            }
-            originalText = textField.text ?? ""
             textFields.append(textField)
         }
         textFields.first?.becomeFirstResponder()
@@ -55,8 +56,9 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         tapGesture.isEnabled = false
         listView.addGestureRecognizer(tapGesture)
         if submitButtonType == .button {
-            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: listView.frame.width, height: submitButton.frame.height + getTheme().padding * 2))
-            footerView.addSubview(submitButton)
+            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: listView.frame.width, height: submitButton.frame.height + getTheme().padding * 2)).apply {
+                $0.addSubview(submitButton)
+            }
             listView.tableFooterView = footerView
         }
     }
@@ -64,10 +66,11 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
     open override func onDisplayItem(item: T, view: V, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         view.textLabel?.isHidden = true
-        let textField = textFields[item.tag]
-        textField.frame = CGRect(x: getTheme().padding, y: 0, width: view.frame.width - 2 * getTheme().padding, height: view.frame.height)
-        textField.font = view.detailTextLabel?.font
-        textField.textColor = view.textLabel?.textColor
+        let textField = textFields[item.tag].apply { it in
+            it.frame = CGRect(x: getTheme().padding, y: 0, width: view.frame.width - 2 * getTheme().padding, height: view.frame.height)
+            it.font = view.detailTextLabel?.font
+            it.textColor = view.textLabel?.textColor
+        }
         view.addSubview(textField)
         // TODO: highlight不可选
     }

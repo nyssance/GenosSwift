@@ -2,16 +2,16 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-extension UIViewController {
-    public var topBarHeight: CGFloat { UIApplication.shared.statusBarFrame.size.height + (navigationController?.navigationBar.frame.height ?? 0) }
+public extension UIViewController {
+    var topBarHeight: CGFloat { UIApplication.shared.statusBarFrame.size.height + (navigationController?.navigationBar.frame.height ?? 0) }
 
-    public func navigateTo(_ destination: UIViewController, animated: Bool = true) {
+    func navigateTo(_ destination: UIViewController, animated: Bool = true) {
         destination.hidesBottomBarWhenPushed = true // 导航栏右侧黑影修复方法, 在AppDelegate设置UIWindow背景为白色 SO https://stackoverflow.com/questions/22516046/ios7-strange-animation-when-using-hidesbottombarwhenpushed
         navigationController?.pushViewController(destination, animated: animated) // 手动push
     }
 
     // swiftlint:disable cyclomatic_complexity function_body_length
-    public func navigate(_ item: Item) {
+    func navigate(_ item: Item) {
         guard item.link.isNotBlank else {
             showDebugAlert("空 link")
             return
@@ -88,7 +88,7 @@ extension UIViewController {
 
     /// 退出当前界面.
     @objc
-    public final func cancel(_ animated: Bool = true) {
+    final func cancel(_ animated: Bool = true) {
         if navigationController == nil || navigationController?.viewControllers.first == self { // 如果无导航栏或为导航栏第一个View
             dismiss(animated: animated, completion: nil)
         } else {

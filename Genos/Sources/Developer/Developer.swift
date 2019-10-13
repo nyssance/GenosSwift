@@ -25,14 +25,16 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         switch item.name {
         case "debug":
-            let switchView = UISwitch()
-            switchView.isOn = Defaults[.debug]
-            switchView.addTarget(self, action: #selector(debug(sender:)), for: .valueChanged)
+            let switchView = UISwitch().apply { it in
+                it.isOn = Defaults[.debug]
+                it.addTarget(self, action: #selector(debug(sender:)), for: .valueChanged)
+            }
             view.accessoryView = switchView
         case "test_env":
-            let switchView = UISwitch()
-            switchView.isOn = Defaults[.test_env]
-            switchView.addTarget(self, action: #selector(testEnv(sender:)), for: .valueChanged)
+            let switchView = UISwitch().apply { it in
+                it.isOn = Defaults[.test_env]
+                it.addTarget(self, action: #selector(testEnv(sender:)), for: .valueChanged)
+            }
             view.accessoryView = switchView
         default:
             break
