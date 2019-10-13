@@ -26,15 +26,15 @@ open class CollectionListController<D: Decodable, T: Decodable, V: UICollectionV
     public var nextPage = LIST_START_PAGE
 
     open func transformListFromData(data: D) -> [T] {
-        return []
+        []
     }
 
     open func hasNext() -> Bool {
-        return true
+        true
     }
 
     open func hasPrevious() -> Bool {
-        return page > LIST_START_PAGE
+        page > LIST_START_PAGE
     }
 
     // MARK: - 👊 Genos
@@ -45,7 +45,7 @@ open class CollectionListController<D: Decodable, T: Decodable, V: UICollectionV
         if !hasPrevious() { // 如果无上一页, 完全重载
             adapter.removeAll()
         }
-        adapter.addList(transformListFromData(data: data))
+        adapter.addAll(transformListFromData(data: data))
         super.onDisplay(data: data)
     }
 
@@ -72,7 +72,7 @@ open class CollectionListController<D: Decodable, T: Decodable, V: UICollectionV
         }
     }
 
-    // MARK: - 💜 UICollectionViewDelegate
+    // MARK: - 🔹 UICollectionViewDelegate
 
     public final override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         loadMore(indexPath)

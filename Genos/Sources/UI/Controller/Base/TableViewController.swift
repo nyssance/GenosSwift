@@ -6,7 +6,7 @@ public enum MultiSelectedStyle: Int, CaseIterable {
     case `default`, checkmark
 }
 
-open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsListViewController<D, T, UITableView, V>, UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsListViewController<D, T, UITableView, V>, UITableViewDataSource, UITableViewDataSourcePrefetching, UITableViewDelegate {
     // MARK: - 🍀 变量
 
     open var tableViewStyle = UITableView.Style.plain
@@ -49,24 +49,24 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
         }
     }
 
-    // MARK: - 💜 UITableViewDataSource
+    // MARK: - 🔹 UITableViewDataSource
 
     public final func numberOfSections(in tableView: UITableView) -> Int {
-        return adapter.getSectionCount()
+        adapter.getSectionCount()
     }
 
     public final func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return adapter.getSectionItemCount(section)
+        adapter.getSectionItemCount(section)
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // NY: 不采用register配合dequeueReusableCell(withIdentifier:for:)方法, 方便UITableViewCell传参
-        return tableView.dequeueReusableCell(withIdentifier: tileId) ?? V.init(style: tableViewCellStyle, reuseIdentifier: tileId)
+        tableView.dequeueReusableCell(withIdentifier: tileId) ?? V.init(style: tableViewCellStyle, reuseIdentifier: tileId)
     }
 
-    // MARK: 💜 UITableViewDelegate
+    // MARK: 🔹 UITableViewDelegate
 
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return getTheme().tableViewRowHeight
+        getTheme().tableViewRowHeight
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -98,11 +98,11 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
         }
     }
 
-    // MARK: 💜 UITableViewDataSourcePrefetching
+    // MARK: 🔹 UITableViewDataSourcePrefetching
 
     open func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {}
 
-    // MARK: 💜 UIScrollViewDelegate
+    // MARK: 🔹 UIScrollViewDelegate
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         onScrollViewDidScroll(scrollView)

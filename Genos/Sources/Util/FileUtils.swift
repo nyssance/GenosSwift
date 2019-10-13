@@ -19,7 +19,7 @@ public struct FileUtils {
 
     /// 列出打包目录的文件URL.
     public static func listAssets(_ path: String) -> [URL] {
-        return listUrls((Bundle.main.resourceURL?.appendingPathComponent(path).path)!) // 处理强转
+        listUrls((Bundle.main.resourceURL?.appendingPathComponent(path).path)!) // 处理强转
     }
 
     /// 列出目录下文件的URL, 默认不显示隐藏文件.

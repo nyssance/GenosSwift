@@ -12,11 +12,7 @@ extension Date {
         return calendar.date(byAdding: components, to: self)!
     }
 
-    public var formatToDay: String {
-        return toFormat(DAY_FORMAT)
-    }
+    public var formatToDay: String { toFormat(DAY_FORMAT) }
 
-    public var formatToSecond: String {
-        return toFormat(SECOND_FORMAT)
-    }
+    public var formatToSecond: String { toFormat(SECOND_FORMAT) }
 }

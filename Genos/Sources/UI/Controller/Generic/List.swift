@@ -4,6 +4,6 @@
 
 open class List<T: Decodable, V: UICollectionViewCell>: CollectionListController<[T], T, V> {
     open override func transformListFromData(data: [T]) -> [T] {
-        return data
+        data
     }
 }

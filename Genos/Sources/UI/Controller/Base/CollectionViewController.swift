@@ -16,21 +16,21 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
         return collectionView
     }
 
-    // MARK: - 💜 UICollectionViewDataSource
+    // MARK: - 🔹 UICollectionViewDataSource
 
     public final func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return adapter.getSectionCount()
+        adapter.getSectionCount()
     }
 
     public final func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return adapter.getSectionItemCount(section)
+        adapter.getSectionItemCount(section)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: tileId, for: indexPath)
+        collectionView.dequeueReusableCell(withReuseIdentifier: tileId, for: indexPath)
     }
 
-    // MARK: 💜 UICollectionViewDelegate
+    // MARK: 🔹 UICollectionViewDelegate
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let view = cell as? V {
@@ -51,11 +51,11 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
         }
     }
 
-    // MARK: 💜 UICollectionViewDataSourcePrefetching
+    // MARK: 🔹 UICollectionViewDataSourcePrefetching
 
     open func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {}
 
-    // MARK: 💜 UIScrollViewDelegate
+    // MARK: 🔹 UIScrollViewDelegate
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         onScrollViewDidScroll(scrollView)

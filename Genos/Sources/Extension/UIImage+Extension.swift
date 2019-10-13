@@ -4,9 +4,7 @@
 
 extension UIImage {
     /// 空白图片.
-    public class var emptyImage: UIImage? {
-        return image(withColor: .colorWithHex(0xFFFFFF, alpha: 0))
-    }
+    public class var emptyImage: UIImage? { image(withColor: .colorWithHex(0xFFFFFF, alpha: 0)) }
 
     /// 缩放.
     public func resize(size: CGSize) -> UIImage? {

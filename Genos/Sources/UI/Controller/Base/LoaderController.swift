@@ -28,7 +28,7 @@ open class LoaderController<D: Decodable>: BaseController {
     var scrollView: UIScrollView?
 
     public final func getData() -> D? {
-        return viewModel.data
+        viewModel.data
     }
 
     public final func setData(_ data: D?) {

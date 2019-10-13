@@ -3,15 +3,9 @@
 //
 
 extension UIFont {
-    public class var labelFont: UIFont { // 17
-        return systemFont(ofSize: labelFontSize)
-    }
+    public class var labelFont: UIFont { systemFont(ofSize: labelFontSize) } // 17
 
-    public class var systemFont: UIFont { // 14
-        return systemFont(ofSize: systemFontSize)
-    }
+    public class var systemFont: UIFont { systemFont(ofSize: systemFontSize) } // 14
 
-    public class var smallSystemFont: UIFont { // 12
-        return systemFont(ofSize: smallSystemFontSize)
-    }
+    public class var smallSystemFont: UIFont { systemFont(ofSize: smallSystemFontSize) } // 12
 }

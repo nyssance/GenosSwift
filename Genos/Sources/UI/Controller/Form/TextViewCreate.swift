@@ -65,7 +65,7 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
         }
     }
 
-    // MARK: - 💜 UITextViewDelegate
+    // MARK: - 🔹 UITextViewDelegate
 
     open func textViewDidChange(_ textView: UITextView) {
         navigationItem.rightBarButtonItem?.isEnabled = textView.text.isNotBlank

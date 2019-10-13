@@ -21,7 +21,7 @@ public struct HttpUtils {
                 switch response.result {
                 case .success:
                     success?(endpoint + key)
-                case .failure(let error):
+                case let .failure(error):
                     failure?()
                     debugPrint(response)
                 }
@@ -81,7 +81,7 @@ public struct HttpUtils {
                 code = response.response?.statusCode ?? 666
                 log.debug("✅ \(code) \(method.rawValue) 🔗 \(endpoint)")
                 success?(code, response)
-            case .failure(let error):
+            case let .failure(error):
                 code = response.response?.statusCode ?? 999
                 log.debug("❌ \(code) \(method.rawValue) 🔗 \(endpoint)")
                 if let data = response.data {

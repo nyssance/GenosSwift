@@ -57,7 +57,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
 
     /// 提交后的检查, 弹框.
     open func onValidate(_ parameters: [String: String]) -> Bool {
-        return true
+        true
     }
 
     /// 提交, 不要再在里面做检查, 会导致 isLoading 状态不正确.

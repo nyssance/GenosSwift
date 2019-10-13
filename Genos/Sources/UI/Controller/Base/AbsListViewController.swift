@@ -9,9 +9,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
 
     public var listView: LV!
     public var adapter: IndexListAdapter<T> = IndexListAdapter()
-    public var tileId: String {
-        return "list_item"
-    }
+    public var tileId: String { "list_item" }
 
     public var segmentedControl: HMSegmentedControl?
 
@@ -34,7 +32,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
     }
 
     func onCreateListView(y: CGFloat) -> LV {
-        return listView
+        listView
         // fatalError("这个方法必须被覆盖")
     }
 
@@ -46,7 +44,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
     // MARK: - 💛 绘制单元项, 子类必须调用
 
     open func onGetItemViewType(_ indexPath: IndexPath) -> Int {
-        return 0
+        0
     }
 
     open func onDisplayItem(item: T, view: V, viewType: Int) {

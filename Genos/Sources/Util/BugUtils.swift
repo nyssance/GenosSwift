@@ -19,6 +19,6 @@ public struct BugUtils {
 
     // 文字自适应size //TODO 临时
     public static func getTextSize(_ text: String, font: UIFont, width: CGFloat = SCREEN_WIDTH - 2 * APP_THEME.padding) -> CGSize {
-        return (text as NSString).boundingRect(with: CGSize(width: width, height: CGFloat(HUGE)), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
+        (text as NSString).boundingRect(with: CGSize(width: width, height: CGFloat(HUGE)), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
     }
 }

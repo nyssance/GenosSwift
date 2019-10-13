@@ -6,14 +6,14 @@ open class SearchResultList<V: UITableViewCell>: TableViewList<SearchResult, V>,
     // MARK: - 👊 Genos
 
     open override func onCreate() {
-        adapter.addList([SearchResult(title: "aaa"), SearchResult(title: "bbb"), SearchResult(title: "ccc")])
+        adapter.addAll([SearchResult(title: "aaa"), SearchResult(title: "bbb"), SearchResult(title: "ccc")])
     }
 
     open override func onDisplayItem(item: SearchResult, view: V, viewType: Int) {
         view.textLabel?.text = item.title
     }
 
-    // MARK: - 💜 UISearchResultsUpdating
+    // MARK: - 🔹 UISearchResultsUpdating
 
     public func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""

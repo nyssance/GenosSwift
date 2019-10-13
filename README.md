@@ -3,6 +3,7 @@
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/Genos.svg)](https://cocoapods.org/pods/Genos)
 
 👊 Genos makes it very easy to build better mobile apps more quickly and with less code.
+
 [Genos for Android](https://github.com/nyssance/genos)
 
 ## Features

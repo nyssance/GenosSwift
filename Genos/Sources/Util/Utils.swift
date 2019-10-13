@@ -9,11 +9,11 @@ public struct Utils {
     }
 
     public static func appLink(id: String) -> String {
-        return "itms-apps://itunes.apple.com/app/id\(id)"
+        "itms-apps://itunes.apple.com/app/id\(id)"
     }
 
     public static func appReviewsLink(id: String = APP_ID) -> String {
-        return "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=\(id)"
+        "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=\(id)"
     }
 
     // 多语言
@@ -27,7 +27,7 @@ public struct Utils {
 
     // 网络
     public static func getPage(_ path: String, parameters: [String: Any] = [:]) -> String {
-        return getUrl("\(BASE_URL)/\(path)/", parameters: parameters)
+        getUrl("\(BASE_URL)/\(path)/", parameters: parameters)
     }
 
     public static func getUrl(_ url: String, parameters: [String: Any]) -> String {

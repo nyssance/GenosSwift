@@ -102,7 +102,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         super.onSubmit(parameters)
     }
 
-    // MARK: - 💜 UITextFieldDelegate
+    // MARK: - 🔹 UITextFieldDelegate
 
     public final func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         tapGesture.isEnabled = true

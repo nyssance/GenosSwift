@@ -6,31 +6,31 @@ open class BaseAdapter<T: Any> {
     var list: [T] = []
 
     public func getItemCount() -> Int {
-        return list.count
+        list.count
     }
 
     public func getItemViewType(_ indexPath: IndexPath) -> Int {
-        return 0
-    }
-
-    public func getItem(_ indexPath: IndexPath) -> T {
-        return list[indexPath.row]
+        0
     }
 
     public func getCurrentList() -> [T] {
-        return list
+        list
     }
 
-    public func addList(_ items: [T]) {
+    public func getItem(_ indexPath: IndexPath) -> T {
+        list[indexPath.row]
+    }
+
+    public func addAll(_ items: [T]) {
         list += items
-    }
-
-    public func add(_ item: T) {
-        list.append(item)
     }
 
     public func removeAll(keepingCapacity: Bool = true) {
         list.removeAll(keepingCapacity: keepingCapacity)
+    }
+
+    public func insert(_ index: Int, _ item: T) {
+        list.insert(item, at: index)
     }
 
     public func remove(_ index: Int) {

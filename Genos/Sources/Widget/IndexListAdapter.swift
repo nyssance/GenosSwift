@@ -18,16 +18,16 @@ open class IndexListAdapter<T: Any>: BaseAdapter<T> {
 
     public func getSectionCount() -> Int {
         // return items.isEmpty ? 1 : items.count
-        return indexer.isEmpty ? 1 : indexer.count
+        indexer.isEmpty ? 1 : indexer.count
     }
 
     public func getSectionItemCount(_ section: Int) -> Int {
         // return items.isEmpty ? getItemCount() : items[section].count
-        return indexer.isEmpty ? getItemCount() : (section < indexer.count - 1 ? indexer[section + 1] : getItemCount()) - indexer[section]
+        indexer.isEmpty ? getItemCount() : (section < indexer.count - 1 ? indexer[section + 1] : getItemCount()) - indexer[section]
     }
 
     public override func getItem(_ indexPath: IndexPath) -> T {
         // return items.isEmpty ? super.getItem(indexPath) : items[indexPath.section][indexPath.row]
-        return indexer.isEmpty ? super.getItem(indexPath) : list[indexer[indexPath.section] + indexPath.row]
+        indexer.isEmpty ? super.getItem(indexPath) : list[indexer[indexPath.section] + indexPath.row]
     }
 }

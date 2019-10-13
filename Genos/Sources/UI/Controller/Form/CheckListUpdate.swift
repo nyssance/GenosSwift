@@ -35,6 +35,6 @@ open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, Ite
     }
 
     override func needDeselect(_ item: Item) -> Bool {
-        return true
+        true
     }
 }

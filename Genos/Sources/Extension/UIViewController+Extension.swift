@@ -3,9 +3,7 @@
 //
 
 extension UIViewController {
-    public var topBarHeight: CGFloat {
-        return UIApplication.shared.statusBarFrame.size.height + (navigationController?.navigationBar.frame.height ?? 0)
-    }
+    public var topBarHeight: CGFloat { UIApplication.shared.statusBarFrame.size.height + (navigationController?.navigationBar.frame.height ?? 0) }
 
     public func navigateTo(_ destination: UIViewController, animated: Bool = true) {
         destination.hidesBottomBarWhenPushed = true // 导航栏右侧黑影修复方法, 在AppDelegate设置UIWindow背景为白色 SO https://stackoverflow.com/questions/22516046/ios7-strange-animation-when-using-hidesbottombarwhenpushed

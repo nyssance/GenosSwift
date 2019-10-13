@@ -16,7 +16,7 @@ open class TableSearch: TableViewList<String, UITableViewCell>, UISearchBarDeleg
         definesPresentationContext = true // 保证不将searchBar带入下一个界面
     }
 
-    // MARK: - 💜 UISearchBarDelegate
+    // MARK: - 🔹 UISearchBarDelegate
 
     public func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         searchController.searchResultsUpdater?.updateSearchResults(for: searchController)

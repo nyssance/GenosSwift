@@ -41,18 +41,18 @@ open class GroupedTableViewController<D: Decodable, T: BaseItem, V: UITableViewC
         }
     }
 
-    // MARK: 💜 UITableViewDelegate
+    // MARK: 🔹 UITableViewDelegate
 
     // SO https://stackoverflow.com/questions/39416385/swift-3-objc-optional-protocol-method-not-called-in-subclass Swift 3/4 泛型类中的 bug
     @objc(tableView:shouldHighlightRowAtIndexPath:)
     public final func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool { // 在这里控制是否可选
-        return adapter.getItem(indexPath).enabled
+        adapter.getItem(indexPath).enabled
     }
 }
 
 extension GroupedTableViewController {
     public func getSelected() -> [T] {
-        return listView.indexPathsForSelectedRows?.map { adapter.getItem($0) } ?? []
+        listView.indexPathsForSelectedRows?.map { adapter.getItem($0) } ?? []
     }
 
     // SO https://stackoverflow.com/questions/33900604/swift-2-0-get-mirrored-superclass-properties

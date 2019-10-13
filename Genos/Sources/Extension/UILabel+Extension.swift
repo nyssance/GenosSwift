@@ -5,11 +5,11 @@
 extension UILabel {
     /// 计算字符串高度.
     public func size(string: String, width: Double) -> CGSize {
-        return NSString(string: string).boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
+        NSString(string: string).boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
     }
 
     public func size(string: String) -> CGSize {
-        return size(string: string, width: .greatestFiniteMagnitude)
+        size(string: string, width: .greatestFiniteMagnitude)
     }
 
     @discardableResult

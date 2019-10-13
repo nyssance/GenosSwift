@@ -4,6 +4,6 @@
 
 open class TableViewList<T: Decodable, V: UITableViewCell>: TableListController<[T], T, V> {
     open override func transformListFromData(data: [T]) -> [T] {
-        return data
+        data
     }
 }

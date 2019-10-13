@@ -21,6 +21,6 @@ open class CreateController<D: Decodable, T: Field, V: UITableViewCell>: FormCon
     }
 
     open func onCreateParameters(data: D?) -> [String: Any] {
-        return [:]
+        [:]
     }
 }

@@ -10,15 +10,15 @@ open class TableListController<D: Decodable, T: Decodable, V: UITableViewCell>: 
     public var nextPage = LIST_START_PAGE
 
     open func transformListFromData(data: D) -> [T] {
-        return []
+        []
     }
 
     open func hasNext() -> Bool {
-        return true
+        true
     }
 
     open func hasPrevious() -> Bool {
-        return page > LIST_START_PAGE
+        page > LIST_START_PAGE
     }
 
     // MARK: - 👊 Genos
@@ -29,7 +29,7 @@ open class TableListController<D: Decodable, T: Decodable, V: UITableViewCell>: 
         if !hasPrevious() { // 如果无翻页或为第一页, 完全重载
             adapter.removeAll()
         }
-        adapter.addList(transformListFromData(data: data))
+        adapter.addAll(transformListFromData(data: data))
         super.onDisplay(data: data)
     }
 
@@ -54,7 +54,7 @@ open class TableListController<D: Decodable, T: Decodable, V: UITableViewCell>: 
         }
     }
 
-    // MARK: - 💜 UITableViewDelegate
+    // MARK: - 🔹 UITableViewDelegate
 
     public final override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         loadMore(indexPath)

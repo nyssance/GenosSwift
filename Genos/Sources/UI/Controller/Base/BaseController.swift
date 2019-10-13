@@ -19,13 +19,9 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
         }
     }
 
-    open override var prefersStatusBarHidden: Bool {
-        return isStatusBarHidden
-    }
+    open override var prefersStatusBarHidden: Bool { isStatusBarHidden }
 
-    var UITag: String {
-        return String(describing: classForCoder).components(separatedBy: "<").first?.underscored() ?? "没有 UITag"
-    }
+    var UITag: String { String(describing: classForCoder).components(separatedBy: "<").first?.underscored() ?? "没有 UITag" }
 
     // MARK: - 💖 生命周期 (Lifecycle)
 

@@ -8,7 +8,7 @@ public protocol Styleable {
 
 extension Styleable where Self: UIViewController {
     public func getTheme() -> Theme {
-        return theme ?? APP_THEME
+        theme ?? APP_THEME
     }
 
     // swiftlint:disable function_body_length

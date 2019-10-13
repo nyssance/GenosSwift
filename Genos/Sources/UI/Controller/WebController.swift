@@ -144,7 +144,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         }
     }
 
-    // MARK: - 💜 WKNavigationDelegate
+    // MARK: - 🔹 WKNavigationDelegate
 
     //    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
     //        if let trust = challenge.protectionSpace.serverTrust { // 处理网页http跳转
@@ -204,7 +204,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         }
     }
 
-    // MARK: 💜 WKUIDelegate
+    // MARK: 🔹 WKUIDelegate
 
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         showAlert(self, message: message)

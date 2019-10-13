@@ -13,11 +13,9 @@ protocol ListViewConnectable {
 extension UICollectionView: ListViewConnectable {}
 
 extension UITableView: ListViewConnectable {
-    public var indexPathsForSelectedItems: [IndexPath]? {
-        return indexPathsForSelectedRows as [IndexPath]?
-    }
+    public var indexPathsForSelectedItems: [IndexPath]? { indexPathsForSelectedRows as [IndexPath]? }
 
     public func numberOfItems(inSection section: Int) -> Int {
-        return numberOfRows(inSection: section)
+        numberOfRows(inSection: section)
     }
 }

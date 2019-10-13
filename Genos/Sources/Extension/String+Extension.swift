@@ -4,7 +4,7 @@
 
 extension String {
     public func trimmed(set: CharacterSet = .whitespaces) -> String {
-        return trimmingCharacters(in: set)
+        trimmingCharacters(in: set)
     }
 
     /// Returns a camel case version of the string.
@@ -55,9 +55,7 @@ extension String {
         return s
     }
 
-    public var locale: String {
-        return Utils.localizedString(self)
-    }
+    public var locale: String { Utils.localizedString(self) }
 
     public var localeSystem: String { // Bundle(for: UIButton.self) 也可
         if let bundle = Bundle(identifier: "com.apple.UIKit") {
@@ -66,11 +64,7 @@ extension String {
         return self
     }
 
-    public var isBlank: Bool {
-        return trimmed().isEmpty
-    }
+    public var isBlank: Bool { trimmed().isEmpty }
 
-    public var isNotBlank: Bool {
-        return !isBlank
-    }
+    public var isNotBlank: Bool { !isBlank }
 }
