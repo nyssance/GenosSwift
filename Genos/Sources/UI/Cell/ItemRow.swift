@@ -16,9 +16,9 @@ open class ItemRow: UITableViewCell {
         textLabel?.textColor = APP_THEME.rowTextColor
         detailTextLabel?.font = APP_THEME.rowDetailFont
         detailTextLabel?.textColor = APP_THEME.rowDetailTextColor
-        if let color = APP_THEME.colorListSelector {
+        APP_THEME.colorListSelector?.let {
             let view = UIView()
-            view.backgroundColor = color
+            view.backgroundColor = $0
             selectedBackgroundView = view
         }
         badge = UILabel(frame: CGRect(x: SCREEN_WIDTH - 3 * APP_THEME.padding, y: frame.height / 2 - 5, width: 10, height: 10))

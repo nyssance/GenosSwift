@@ -25,8 +25,8 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
         listView.backgroundColor = getTheme().colorBackground
         listView.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
         view.addSubview(listView)
-        if let segmented = segmentedControl {
-            view.addSubview(segmented)
+        segmentedControl?.let {
+            view.addSubview($0)
         }
         scrollView = listView // 因为刷新全部移到LoaderController中，所以子类的scrollView要传递给LoaderController
     }

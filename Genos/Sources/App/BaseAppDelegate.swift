@@ -31,8 +31,8 @@ open class BaseAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     open func applicationDidEnterBackground(_ application: UIApplication) {
-        if let view = blurView { // 后台模糊
-            window?.addSubview(view)
+        blurView?.let { // 后台模糊
+            window?.addSubview($0)
         }
     }
 

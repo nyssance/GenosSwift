@@ -29,8 +29,8 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         // SO https://stackoverflow.com/questions/40884138/error-when-using-wkaudiovisualmediatypenone-in-swift-3
         config.mediaTypesRequiringUserActionForPlayback = []
         webView = WKWebView(frame: view.frame, configuration: config)
-        if let originalAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent") {
-            webView.customUserAgent = "\(originalAgent) CM.MM.iOS/\(InfoPlistUtils.APP_VERSION)" // TODO: 改为appbunle
+        UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")?.let {
+            webView.customUserAgent = "\($0) CM.Genos.iOS/\(InfoPlistUtils.APP_VERSION)" // TODO: 改为appbunle
         }
         if navigationController != nil {
             navigationItem.largeTitleDisplayMode = .never
@@ -70,13 +70,14 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         }
         do { // 导航栏和工具栏
             if isDebug {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.ellipsisH), size: CGSizeNavigationBarIcon), style: .plain, target: self, action: #selector(more))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.ellipsisH), size: .appBarIcon), style: .plain, target: self, action: #selector(more))
             }
-            backButton = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.chevronLeft), size: CGSizeNavigationBarIcon), style: .plain, target: self, action: #selector(back))
-            forwardButton = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.chevronRight), size: CGSizeNavigationBarIcon), style: .plain, target: self, action: #selector(forward))
+            backButton = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.chevronLeft), size: .appBarIcon), style: .plain, target: self, action: #selector(back))
+            forwardButton = UIBarButtonItem(image: UIImage(icon: .fontAwesomeSolid(.chevronRight), size: .appBarIcon), style: .plain, target: self, action: #selector(forward))
             // backButton.setIcon(icon: .fontAwesomeSolid(.chevronRight), iconSize: iconSize, color: .black)
             refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
-            setToolbarItems([FLEXIBLE_SPACE, backButton, FLEXIBLE_SPACE, forwardButton, FLEXIBLE_SPACE, refreshButton], animated: false)
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            setToolbarItems([space, backButton, space, forwardButton, space, refreshButton], animated: false)
             navigationController?.isToolbarHidden = false
             closeBarButton = UIBarButtonItem(title: "close".locale, style: .plain, target: self, action: #selector(cancel))
             navigationItem.leftItemsSupplementBackButton = true
@@ -122,8 +123,8 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
 
     @objc
     public func more() {
-        if let url = URL(string: link) {
-            UIApplication.shared.open(url)
+        URL(string: link)?.let {
+            UIApplication.shared.open($0)
         }
     }
 
@@ -139,8 +140,8 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
 
     @objc
     public func refresh() {
-        if let url = webView.url {
-            webView.load(URLRequest(url: url))
+        webView.url?.let {
+            webView.load(URLRequest(url: $0))
         }
     }
 
@@ -156,11 +157,9 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         guard let url = navigationAction.request.url else { return }
         //        if let url = navigationAction.request.url {
         if ["http", "https", "about"].contains(url.scheme ?? "") {
-            if let host = url.host {
+            url.host?.let { host in
                 if let webHostTexts = WEB_HOST_TEXTS {
-                    let hosts = Array(webHostTexts.keys).filter {
-                        $0.contains(host)
-                    }
+                    let hosts = Array(webHostTexts.keys).filter { $0.contains(host) }
                     if let key = hosts.first {
                         textLayer.string = webHostTexts[key]
                     } else {
@@ -169,7 +168,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
                 } else {
                     textLayer.string = host
                 }
-                let textSize = Utils.getTextSize((textLayer.string as? String) ?? host, font: .systemFont)
+                let textSize = ((textLayer.string as? String) ?? host).size(font: .systemFont)
                 textLayer.bounds = CGRect(origin: .zero, size: CGSize(width: view.frame.width - getTheme().padding * 2, height: textSize.height))
                 textLayer.frame.origin = CGPoint(x: (SCREEN_WIDTH - textLayer.bounds.width) / 2, y: getTheme().padding)
             }

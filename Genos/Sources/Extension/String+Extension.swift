@@ -67,4 +67,13 @@ extension String {
     public var isBlank: Bool { trimmed().isEmpty }
 
     public var isNotBlank: Bool { !isBlank }
+
+    /// 计算字符串高度.
+    public func size(width: Double, font: UIFont) -> CGSize {
+        boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).size
+    }
+
+    public func size(font: UIFont) -> CGSize {
+        size(width: .greatestFiniteMagnitude, font: font)
+    }
 }

@@ -12,7 +12,7 @@ public class PasswordTextField: UITextField {
         keyboardType = .asciiCapable
         isSecureTextEntry = true
         // 密码小眼睛
-        let button = UIButton(frame: CGRect(origin: .zero, size: CGSizeSettingsIcon))
+        let button = UIButton(frame: CGRect(origin: .zero, size: .settingsIcon))
         button.setIcon(icon: .fontAwesomeSolid(.eyeSlash), color: .gray, forState: .normal)
         button.setIcon(icon: .fontAwesomeSolid(.eye), color: APP_THEME.colorPrimary, forState: .selected)
         button.setIcon(icon: .fontAwesomeSolid(.eye), color: APP_THEME.colorPrimary, forState: [.selected, .highlighted])
@@ -27,8 +27,8 @@ public class PasswordTextField: UITextField {
         resignFirstResponder()
         isSecureTextEntry.toggle()
         becomeFirstResponder()
-        if let button = rightView as? UIButton {
-            button.isSelected.toggle()
+        (rightView as? UIButton)?.let {
+            $0.isSelected.toggle()
         }
     }
 }

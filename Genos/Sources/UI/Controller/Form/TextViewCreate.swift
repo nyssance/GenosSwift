@@ -35,7 +35,8 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(create))
         countBarButton = UIBarButtonItem()
-        setToolbarItems([FLEXIBLE_SPACE, countBarButton], animated: false)
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        setToolbarItems([space, countBarButton], animated: false)
         // 输入框
         textView = GrowingTextView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - (navigationController?.toolbar.frame.height ?? 0)))
         // 自定义键盘栏
@@ -93,8 +94,8 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
     @objc
     func keyboardWillShow(_ notification: Notification) {
         let kbSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue.size
-        if let toolbarHeight = navigationController?.toolbar.frame.height {
-            textView.frame.size.height = view.frame.height - kbSize.height - toolbarHeight
+        navigationController?.toolbar.frame.height.let {
+            textView.frame.size.height = view.frame.height - kbSize.height - $0
         }
     }
 

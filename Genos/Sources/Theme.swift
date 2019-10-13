@@ -47,8 +47,8 @@ open class Theme {
     public init() {
         navigationBarTintColor = colorPrimary
         navigationBarProgressTintColor = colorPrimary
-        if let color = textColorPrimary {
-            titleTextAttributes = [.foregroundColor: color]
+        textColorPrimary?.let { it in
+            titleTextAttributes = [.foregroundColor: it]
         }
     }
 }

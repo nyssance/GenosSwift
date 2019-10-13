@@ -12,75 +12,71 @@ extension Styleable where Self: UIViewController {
     }
 
     // swiftlint:disable function_body_length
-    public func setNavigationBar(style: Theme.BarStyle, color: UIColor? = nil, image: UIImage? = nil, showTitle: Bool = false, statusBarStyle: UIStatusBarStyle = .lightContent, from: String) {
+    public func setNavigationBar(style: Theme.BarStyle, color: UIColor? = nil, image: UIImage? = nil, showTitle: Bool = false, from: String) {
         log.verbose("\(style) \(from)")
-        switch style {
-        case .colorful: // 彩色导航栏
-            extendedLayoutIncludesOpaqueBars = true
-            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-            navigationController?.navigationBar.shadowImage = nil
-            navigationController?.navigationBar.barStyle = .black
-            navigationController?.navigationBar.barTintColor = color ?? getTheme().colorPrimary
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.isTranslucent = false
-            UIApplication.shared.statusBarStyle = .lightContent
-//            overide var preferredStatusBarStyle: UIStatusBarStyle {
-//                return statusBarStyle
-//            }
-            navigationController?.navigationBar.titleTextAttributes?.removeValue(forKey: .foregroundColor)
-        case .transparent: // 透明导航栏
-            extendedLayoutIncludesOpaqueBars = false
-            if image == nil { // 无图片时为全屏风格
-                // listView.contentInsetAdjustmentBehavior = .never TODO
-            } else {
-                let imageView = ImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: topBarHeight))
-                imageView.image = image
-                view.addSubview(imageView)
+        navigationController?.navigationBar.let { navigationBar in
+            switch style {
+            case .colorful: // 彩色导航栏
+                extendedLayoutIncludesOpaqueBars = true
+                navigationBar.setBackgroundImage(nil, for: .default)
+                navigationBar.shadowImage = nil
+                navigationBar.barStyle = .black
+                navigationBar.barTintColor = color ?? getTheme().colorPrimary
+                navigationBar.tintColor = .white
+                navigationBar.isTranslucent = false
+                navigationBar.titleTextAttributes?.removeValue(forKey: .foregroundColor)
+            case .transparent: // 透明导航栏
+                extendedLayoutIncludesOpaqueBars = false
+                if image == nil { // 无图片时为全屏风格
+                    // listView.contentInsetAdjustmentBehavior = .never TODO
+                } else {
+                    let imageView = ImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: topBarHeight))
+                    imageView.image = image
+                    view.addSubview(imageView)
+                }
+                navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationBar.shadowImage = UIImage()
+                navigationBar.barStyle = .black
+                navigationBar.barTintColor = nil
+                navigationBar.tintColor = .white
+                navigationBar.isTranslucent = true
+                if showTitle {
+                    navigationBar.titleTextAttributes?.removeValue(forKey: .foregroundColor)
+                } else {
+                    navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
+                }
+                if !hidesBottomBarWhenPushed {
+                    //                if let listView = view.subviews.last as? UIScrollView { //TODO
+                    //                    fixListViewHeight(listView: listView, tabBarController: tabBarController) // 解决透明导航栏时被tabBar遮挡
+                    //                }
+                }
+            case .light:
+                setNav(navigationBar)
+                navigationBar.isTranslucent = false
+                // iOS 11 上处理阴影线
+                navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationBar.shadowImage = UIImage()
+            case .lightComplete:
+                setNav(navigationBar)
+                navigationBar.isTranslucent = false
+                navigationBar.setBackgroundImage(UIImage(), for: .default)
+                navigationBar.shadowImage = UIImage()
+            default: // 默认导航栏
+                setNav(navigationBar)
             }
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationController?.navigationBar.shadowImage = UIImage()
-            navigationController?.navigationBar.barStyle = .black
-            navigationController?.navigationBar.barTintColor = nil
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.isTranslucent = true
-            UIApplication.shared.statusBarStyle = statusBarStyle
-            if showTitle {
-                navigationController?.navigationBar.titleTextAttributes?.removeValue(forKey: .foregroundColor)
-            } else {
-                navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
-            }
-            if !hidesBottomBarWhenPushed {
-                //                if let listView = view.subviews.last as? UIScrollView { //TODO
-                //                    fixListViewHeight(listView: listView, tabBarController: tabBarController) // 解决透明导航栏时被tabBar遮挡
-                //                }
-            }
-        case .light:
-            setNav()
-            navigationController?.navigationBar.isTranslucent = false
-            // iOS 11 上处理阴影线
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationController?.navigationBar.shadowImage = UIImage()
-        case .lightComplete:
-            setNav()
-            navigationController?.navigationBar.isTranslucent = false
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationController?.navigationBar.shadowImage = UIImage()
-        default: // 默认导航栏
-            setNav()
         }
     }
 
-    func setNav() {
+    func setNav(_ navigationBar: UINavigationBar) {
         extendedLayoutIncludesOpaqueBars = true
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = nil
-        navigationController?.navigationBar.tintColor = getTheme().navigationBarTintColor
-        navigationController?.navigationBar.isTranslucent = true
-        UIApplication.shared.statusBarStyle = .default
-        navigationController?.navigationBar.titleTextAttributes = getTheme().titleTextAttributes
-        navigationController?.navigationBar.largeTitleTextAttributes = getTheme().largeTitleTextAttributes
+        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.shadowImage = nil
+        navigationBar.barStyle = .default
+        navigationBar.barTintColor = nil
+        navigationBar.tintColor = getTheme().navigationBarTintColor
+        navigationBar.isTranslucent = true
+        navigationBar.titleTextAttributes = getTheme().titleTextAttributes
+        navigationBar.largeTitleTextAttributes = getTheme().largeTitleTextAttributes
     }
 
     /// 隐藏返回菜单.
@@ -93,9 +89,11 @@ extension Styleable where Self: UIViewController {
     public func setToolbar(style: Theme.BarStyle) {
         switch style {
         case .transparent: // 透明工具栏
-            navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-            navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-            navigationController?.toolbar.tintColor = .white
+            navigationController?.toolbar.let { it in
+                it.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+                it.setShadowImage(UIImage(), forToolbarPosition: .any)
+                it.tintColor = .white
+            }
         default:
             break
         }

@@ -19,8 +19,8 @@ public func showActionSheet(_ controller: UIViewController, _ alert: UIAlertCont
 public func showAlert(_ controller: UIViewController?, title: String? = nil, message: String?, action: UIAlertAction? = nil, cancelButtonTitle: String? = nil, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: cancelButtonTitle ?? (action == nil ? "ok" : "cancel").locale, style: .cancel, handler: cancelHandler))
-    if let action = action {
-        alert.addAction(action)
+    action?.let {
+        alert.addAction($0)
     }
     (controller ?? getCurrentViewController()).present(alert, animated: true, completion: nil)
 }
@@ -39,8 +39,8 @@ public func showDebugAlert(title: String = "debug".locale, _ message: String, co
 
 public func showSettingsAlert(controller: UIViewController?, title: String, message: String) {
     showAlert(controller, title: title, message: message, action: UIAlertAction(title: "settings".locale, style: .default) { _ in
-        if let url = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.open(url) // 开启设置
+        URL(string: UIApplication.openSettingsURLString)?.let { it in
+            UIApplication.shared.open(it) // 开启设置
         }
     })
 }

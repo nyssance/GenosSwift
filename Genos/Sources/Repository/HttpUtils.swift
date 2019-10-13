@@ -4,25 +4,28 @@
 
 import Alamofire
 
+public typealias failureBlock = ((_ code: Int, _ message: String) -> Void)?
+
 public struct HttpUtils {
     /// 上传到 bucket.
-    public static func upload(data: Data, endpoint: String, parameters: [String: String], success: ((_ urlString: String) -> Void)? = nil, failure: (() -> Void)? = nil) {
-        if let key = parameters["key"] {
+    public static func upload(data: Data, endpoint: String, parameters: [String: String], success: ((_ urlString: String) -> Void)? = nil, failure: failureBlock = nil) {
+        parameters["key"]?.let { it in
             AF.upload(multipartFormData: { multipartFormData in
                 parameters.forEach { key, value in
-                    if let data = value.data(using: .utf8) {
-                        multipartFormData.append(data, withName: key)
+                    value.data(using: .utf8)?.let {
+                        multipartFormData.append($0, withName: key)
                     }
                 }
-                if let mimeType = parameters["Content-Type"] {
-                    multipartFormData.append(data, withName: "file", fileName: key, mimeType: mimeType)
+                parameters["Content-Type"]?.let {
+                    multipartFormData.append(data, withName: "file", fileName: it, mimeType: $0)
                 }
             }, to: endpoint).responseJSON { response in
                 switch response.result {
                 case .success:
-                    success?(endpoint + key)
+                    success?(endpoint + it)
                 case let .failure(error):
-                    failure?()
+                    let code = response.response?.statusCode ?? 999
+                    failure?(code, error.localizedDescription)
                     debugPrint(response)
                 }
             }
@@ -30,7 +33,7 @@ public struct HttpUtils {
     }
 
     // SO https://stackoverflow.com/questions/46222784/redundant-conformance-constraint-warning-in-swift-4
-    public static func request<D: Decodable>(_ call: Call<D>, success: @escaping ((_ code: Int, _ data: D) -> Void), failure: ((_ code: Int, _ message: String) -> Void)? = nil, complete: (() -> Void)? = nil) {
+    public static func request<D: Decodable>(_ call: Call<D>, success: @escaping ((_ code: Int, _ data: D) -> Void), failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         var endpoint = call.endpoint
         if !endpoint.contains("://") {
             endpoint = "\(BASE_URL)/\(endpoint)"
@@ -50,7 +53,7 @@ public struct HttpUtils {
     }
 
     /// 传入参数执行.
-    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: [String: Any] = [:], success: ((_ code: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: ((_ code: Int, _ message: String) -> Void)? = nil, complete: (() -> Void)? = nil) {
+    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: [String: Any] = [:], success: ((_ code: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         guard let url = URL(string: endpoint) else {
             log.error("\(endpoint) 无法转化为URL")
             return

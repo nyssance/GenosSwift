@@ -12,8 +12,8 @@ public class Item: BaseItem {
         self.choices = choices
         self.destination = destination
         if link.isBlank {
-            if let destination = destination {
-                var str = String(describing: destination).lowercased()
+            if let it = destination {
+                var str = String(describing: it).lowercased()
                 if str.hasSuffix("list") {
                     str = str.replacingOccurrences(of: "list", with: "_list")
                 } else if str.hasSuffix("detail") {

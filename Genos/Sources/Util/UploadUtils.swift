@@ -4,7 +4,7 @@
 
 public struct UploadUtils {
     /// 上传到云存储.
-    public static func uploadToCloud(cloud: String, filename: String, data: Data, controller: UIViewController, success: ((_ urlString: String) -> Void)? = nil, failure: (() -> Void)? = nil) {
+    public static func uploadToCloud(cloud: String, filename: String, data: Data, controller: UIViewController, success: ((_ urlString: String) -> Void)? = nil, failure: failureBlock = nil) {
         getCloudUploadParams(cloud: cloud, filename: filename) { endpoint, params in
             HttpUtils.upload(data: data, endpoint: endpoint, parameters: params, success: success, failure: failure)
         }

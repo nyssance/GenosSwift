@@ -12,8 +12,8 @@ open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, Ite
 
     open override func onDisplayItem(item: Item, view: ItemRow, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
-        if let mirror = mirror {
-            (item.enabled, view.accessoryType) = item.name == getValue(field.name.camelCased(), mirror: mirror) as? String ? (false, .checkmark) : (true, .none)
+        mirror?.let { it in
+            (item.enabled, view.accessoryType) = item.name == getValue(field.name.camelCased(), mirror: it) as? String ? (false, .checkmark) : (true, .none)
         }
     }
 

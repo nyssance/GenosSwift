@@ -39,8 +39,8 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
             field.tag = i
             textField.tag = i // 定位
             textField.delegate = self
-            if let mirror = mirror {
-                textField.text = getValue(field.name.camelCased(), mirror: mirror) as? String
+            mirror?.let {
+                textField.text = getValue(field.name.camelCased(), mirror: $0) as? String
             }
             originalText = textField.text ?? ""
             textFields.append(textField)
