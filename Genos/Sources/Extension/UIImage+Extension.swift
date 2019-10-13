@@ -4,7 +4,7 @@
 
 extension UIImage {
     /// 空白图片.
-    public class var emptyImage: UIImage? { image(withColor: .colorWithHex(0xFFFFFF, alpha: 0)) }
+    public static let emptyImage = image(withColor: .colorWithHex(0xFFFFFF, alpha: 0))
 
     /// 缩放.
     public func resize(size: CGSize) -> UIImage? {
@@ -25,7 +25,7 @@ extension UIImage {
     }
 
     /// 生成纯色图片, 默认大小1x1, 在 UITableViewCell 默认左侧图标使用时需要手动设定大小占位.
-    public class func image(withColor color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+    public static func image(withColor color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
         UIGraphicsBeginImageContext(size)
         color.set()
         UIRectFill(CGRect(origin: .zero, size: size))

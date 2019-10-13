@@ -2,8 +2,8 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-open class TableListController<D: Decodable, T: Decodable, V: UITableViewCell>: TableViewController<D, T, V>, Listable {
-    // MARK: - 🍀 变量
+open class TableViewListController<D: Decodable, T: Decodable, V: UITableViewCell>: TableViewController<D, T, V>, Listable {
+    // MARK: - 🍀 属性
 
     public var pagination = Pagination()
     public var page = LIST_START_PAGE

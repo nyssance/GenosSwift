@@ -5,7 +5,7 @@
 import HMSegmentedControl
 
 open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIView>: LoaderController<D> {
-    // MARK: - 🍀 变量
+    // MARK: - 🍀 属性
 
     public var listView: LV!
     public var adapter: IndexListAdapter<T> = IndexListAdapter()

@@ -35,13 +35,13 @@ open class Theme {
     public var paddingInner: CGFloat = IS_IPHONE_PLUS || IS_IPHONE_XS_MAX ? 20 : 15
     public var buttonHeight: CGFloat = 45
     // 单元格
-    public var tableViewRowHeight: CGFloat = 44 // iOS 9 以后究竟是45还是44 (连分割线是45)
-    public var tableCellFont: UIFont? // 不设置就为默认值
-    public var tableCellTextColor: UIColor?
-    public var tableCellDetailFont: UIFont?
-    public var tableCellDetailTextColor: UIColor?
+    public var rowHeight: CGFloat = 44 // iOS 9 以后究竟是45还是44 (连分割线是45)
+    public var rowFont: UIFont? // 不设置就为默认值
+    public var rowTextColor: UIColor?
+    public var rowDetailFont: UIFont?
+    public var rowDetailTextColor: UIColor?
     // 暂时
-    public var rowHeightBig: CGFloat = 80
+    public var largeRowHeight: CGFloat = 80
     public var GROUP_TABLE_BOTTOM_HEIGHT: CGFloat = 27.5
 
     public init() {

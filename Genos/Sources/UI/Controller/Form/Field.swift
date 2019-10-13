@@ -12,8 +12,6 @@ public class BaseItem {
     public var indexPath: IndexPath?
     public var tag = 0
 
-    public class var emptyItem: Item { Item() }
-
     public init(name: String, icon: UIImage? = nil, title: String? = nil, subtitle: String? = nil, enabled: Bool = false) {
         self.name = name
         self.icon = icon

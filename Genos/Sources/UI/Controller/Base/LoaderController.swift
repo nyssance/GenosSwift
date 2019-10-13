@@ -15,7 +15,7 @@ public enum Action: Int, CaseIterable {
 }
 
 open class LoaderController<D: Decodable>: BaseController {
-    // MARK: - 🍀 变量
+    // MARK: - 🍀 属性
 
     public var viewModel = BaseViewModel<D>()
     public var call: Call<D>?

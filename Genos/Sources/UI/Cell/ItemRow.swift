@@ -2,7 +2,7 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-open class ItemCell: UITableViewCell {
+open class ItemRow: UITableViewCell {
     public var badge: UILabel!
 
     public required init?(coder aDecoder: NSCoder) {
@@ -12,10 +12,10 @@ open class ItemCell: UITableViewCell {
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // TODO: getCurrentController.getTheme
-        textLabel?.font = APP_THEME.tableCellFont
-        textLabel?.textColor = APP_THEME.tableCellTextColor
-        detailTextLabel?.font = APP_THEME.tableCellDetailFont
-        detailTextLabel?.textColor = APP_THEME.tableCellDetailTextColor
+        textLabel?.font = APP_THEME.rowFont
+        textLabel?.textColor = APP_THEME.rowTextColor
+        detailTextLabel?.font = APP_THEME.rowDetailFont
+        detailTextLabel?.textColor = APP_THEME.rowDetailTextColor
         if let color = APP_THEME.colorListSelector {
             let view = UIView()
             view.backgroundColor = color

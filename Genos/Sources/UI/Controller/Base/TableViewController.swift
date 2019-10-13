@@ -7,7 +7,7 @@ public enum MultiSelectedStyle: Int, CaseIterable {
 }
 
 open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsListViewController<D, T, UITableView, V>, UITableViewDataSource, UITableViewDataSourcePrefetching, UITableViewDelegate {
-    // MARK: - 🍀 变量
+    // MARK: - 🍀 属性
 
     open var tableViewStyle = UITableView.Style.plain
     open var tableViewCellStyle = UITableViewCell.CellStyle.default
@@ -28,8 +28,8 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
     public override func onCreateListView(y: CGFloat) -> UITableView {
         let tableView = UITableView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), style: tableViewStyle)
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.prefetchDataSource = self
+        tableView.delegate = self
         if tableView.style == .plain { // 在plain模式下处理
             tableView.tableFooterView = UIView() // 无数据时不显示分割线, 参见DZNEmptyDataSet文档
             view.backgroundColor = .white // 保证有segment时返回顶部不会少一截
@@ -59,14 +59,18 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
         adapter.getSectionItemCount(section)
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // NY: 不采用register配合dequeueReusableCell(withIdentifier:for:)方法, 方便UITableViewCell传参
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // NY 不采用register配合dequeueReusableCell(withIdentifier:for:)方法, 方便UITableViewCell传参
         tableView.dequeueReusableCell(withIdentifier: tileId) ?? V.init(style: tableViewCellStyle, reuseIdentifier: tileId)
     }
+
+    // MARK: 🔹 UITableViewDataSourcePrefetching
+
+    open func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {}
 
     // MARK: 🔹 UITableViewDelegate
 
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        getTheme().tableViewRowHeight
+        getTheme().rowHeight
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -97,10 +101,6 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
             break
         }
     }
-
-    // MARK: 🔹 UITableViewDataSourcePrefetching
-
-    open func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {}
 
     // MARK: 🔹 UIScrollViewDelegate
 

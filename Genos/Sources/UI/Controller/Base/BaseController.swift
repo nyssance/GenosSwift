@@ -8,7 +8,7 @@ import DeviceKit
 import SwiftEventBus
 
 open class BaseController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, Styleable {
-    // MARK: - 🍀 变量
+    // MARK: - 🍀 属性
 
     public var progressView: UIProgressView!
     public var theme: Theme? // 每个页面当前的theme
@@ -114,6 +114,6 @@ extension BaseController {
             picker.delegate = self
             self.present(picker, animated: true, completion: nil)
         })
-        showActionSheet(controller: self, alert: alert)
+        showActionSheet(self, alert)
     }
 }

@@ -2,7 +2,7 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionViewCell>: AbsListViewController<D, T, UICollectionView, V>, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
+open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionViewCell>: AbsListViewController<D, T, UICollectionView, V>, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: - 👊 Genos
 
     public override func onCreateListView(y: CGFloat) -> UICollectionView {
@@ -10,8 +10,8 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), collectionViewLayout: layout)
         collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.prefetchDataSource = self
+        collectionView.delegate = self
         collectionView.register(V.self, forCellWithReuseIdentifier: tileId)
         return collectionView
     }
@@ -29,6 +29,10 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.dequeueReusableCell(withReuseIdentifier: tileId, for: indexPath)
     }
+
+    // MARK: 🔹 UICollectionViewDataSourcePrefetching
+
+    open func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {}
 
     // MARK: 🔹 UICollectionViewDelegate
 
@@ -50,10 +54,6 @@ open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionV
             }
         }
     }
-
-    // MARK: 🔹 UICollectionViewDataSourcePrefetching
-
-    open func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {}
 
     // MARK: 🔹 UIScrollViewDelegate
 

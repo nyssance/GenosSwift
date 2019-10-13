@@ -3,7 +3,7 @@
 //
 
 open class GroupedTableViewController<D: Decodable, T: BaseItem, V: UITableViewCell>: TableViewController<D, T, V> {
-    public var items: [[T]] = [] // NY: 默认菜单项, 默认为多组, 不能初始化为[[]], 这样items.count为1而不是0
+    public var items: [[T]] = [] // NY 默认菜单项, 默认为多组, 不能初始化为[[]], 这样items.count为1而不是0
     public var mirror: Mirror?
 
     // MARK: - 👊 Genos
@@ -32,12 +32,12 @@ open class GroupedTableViewController<D: Decodable, T: BaseItem, V: UITableViewC
         if let mirror = mirror, let value = getValue(item.name.camelCased(), mirror: mirror), item.subtitle == nil { // 防止刚进入无数据时出错
             view.detailTextLabel?.text = viewModel.getDisplay(item.name, value: value)
         }
-        if view is ItemCell { // 修正badge位置
-            let badge = (view as? ItemCell)?.badge
-            badge?.frame.origin.y += (view.frame.height - getTheme().tableViewRowHeight) / 2
+        if view is ItemRow { // 修正badge位置
+            let badge = (view as? ItemRow)?.badge
+            badge?.frame.origin.y += (view.frame.height - getTheme().rowHeight) / 2
         }
-        if view.isMember(of: ItemCell.self) {
-            getTheme().tableViewRowHeight = view.frame.height // FIXME: 这里有问题修改了全局
+        if view.isMember(of: ItemRow.self) {
+            getTheme().rowHeight = view.frame.height // FIXME: 这里有问题修改了全局
         }
     }
 

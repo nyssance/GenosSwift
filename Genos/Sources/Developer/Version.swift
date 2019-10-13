@@ -2,7 +2,7 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public class Version: TableViewDetail<String, Item, ItemCell> {
+public class Version: TableViewDetail<String, Item, ItemRow> {
     // MARK: - 👊 Genos
 
     public override func onCreate() {

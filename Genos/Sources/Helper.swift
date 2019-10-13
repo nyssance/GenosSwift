@@ -9,7 +9,7 @@ public func showLoginUI(_ controller: UIViewController) { // present跳转增加
     controller.present(UINavigationController(rootViewController: SIGN_IN_CONTROLLER.init()), animated: true, completion: nil)
 }
 
-public func showActionSheet(controller: UIViewController, alert: UIAlertController, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+public func showActionSheet(_ controller: UIViewController, _ alert: UIAlertController, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
     alert.addAction(UIAlertAction(title: "cancel".locale, style: .cancel, handler: cancelHandler))
     alert.popoverPresentationController?.sourceView = controller.view // 适配iPad
     alert.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height / 2)
@@ -29,11 +29,11 @@ public func showDebugAlert(title: String = "debug".locale, _ message: String, co
     log.error(message, context: title)
     if isDebug {
         let iconImage = UIImage(icon: .fontAwesomeSolid(.lightbulb), size: CGSize(width: 72, height: 72), textColor: .white)
-        let alertview = JSSAlertView().show(getCurrentViewController(), title: title, text: message, buttonText: "请通知程序员修复".locale, color: color, iconImage: iconImage)
-        alertview.setTitleFont(".SFUIText-Light")
-        alertview.setTextFont(".SFUIText")
-        alertview.setButtonFont(".SFUIText-Bold")
-        alertview.setTextTheme(.light)
+        let alert = JSSAlertView().show(getCurrentViewController(), title: title, text: message, buttonText: "请通知程序员修复".locale, color: color, iconImage: iconImage)
+        alert.setTitleFont(".SFUIText-Light")
+        alert.setTextFont(".SFUIText")
+        alert.setButtonFont(".SFUIText-Bold")
+        alert.setTextTheme(.light)
     }
 }
 

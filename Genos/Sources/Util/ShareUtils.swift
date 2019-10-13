@@ -3,7 +3,7 @@
 //
 
 public struct ShareUtils {
-    public static var THIRD_PARTY_APPS = [
+    public static let THIRD_PARTY_APPS = [
         "mqq": "qq",
         "weixin": "wechat",
         "fb": "facebook"

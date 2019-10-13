@@ -2,7 +2,7 @@
 //  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-open class TextFieldCell: UITableViewCell {
+open class TextFieldRow: UITableViewCell {
     public var textField: UITextField!
 
     public required init?(coder aDecoder: NSCoder) {

@@ -4,7 +4,7 @@
 
 import SwiftyUserDefaults
 
-public class Developer: TableViewDetail<String, Item, ItemCell> {
+public class Developer: TableViewDetail<String, Item, ItemRow> {
     // MARK: - 👊 Genos
 
     public override func onCreate() {
@@ -21,7 +21,7 @@ public class Developer: TableViewDetail<String, Item, ItemCell> {
         ]
     }
 
-    open override func onDisplayItem(item: Item, view: ItemCell, viewType: Int) {
+    open override func onDisplayItem(item: Item, view: ItemRow, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         switch item.name {
         case "debug":

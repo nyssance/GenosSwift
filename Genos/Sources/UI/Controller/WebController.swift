@@ -5,7 +5,7 @@
 import WebKit
 
 open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, BackBarButtonItemDelegate {
-    // MARK: - 🍀 变量
+    // MARK: - 🍀 属性
 
     public var link = ""
     public var data = ""
@@ -169,7 +169,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
                 } else {
                     textLayer.string = host
                 }
-                let textSize = BugUtils.getTextSize((textLayer.string as? String) ?? host, font: .systemFont)
+                let textSize = Utils.getTextSize((textLayer.string as? String) ?? host, font: .systemFont)
                 textLayer.bounds = CGRect(origin: .zero, size: CGSize(width: view.frame.width - getTheme().padding * 2, height: textSize.height))
                 textLayer.frame.origin = CGPoint(x: (SCREEN_WIDTH - textLayer.bounds.width) / 2, y: getTheme().padding)
             }

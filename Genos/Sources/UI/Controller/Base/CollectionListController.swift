@@ -18,8 +18,8 @@ public protocol Listable {
     func loadMore(_ indexPath: IndexPath)
 }
 
-open class CollectionListController<D: Decodable, T: Decodable, V: UICollectionViewCell>: CollectionViewController<D, T, V>, Listable {
-    // MARK: - 🍀 变量
+open class CollectionViewListController<D: Decodable, T: Decodable, V: UICollectionViewCell>: CollectionViewController<D, T, V>, Listable {
+    // MARK: - 🍀 属性
 
     public var pagination = Pagination()
     public var page = LIST_START_PAGE
