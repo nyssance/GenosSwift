@@ -56,7 +56,7 @@ public var SECOND_FORMAT = "yyyy-MM-dd HH:mm:ss"
 // 配置
 public var isDebug = Defaults[.debug]
 
-extension DefaultsKeys {
+public extension DefaultsKeys {
     static let test_env = DefaultsKey<Bool>("test_env", defaultValue: false)
     static let debug = DefaultsKey<Bool>("debug", defaultValue: false)
 }
@@ -75,8 +75,8 @@ public let STATUS_BAR_HEIGHT: CGFloat = IS_IPHONE_X || IS_IPHONE_XS_MAX ? 44 : 2
 public let NAVIGATION_BAR_HEIGHT: CGFloat = 44
 public let TOP_BAR_HEIGHT = STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT
 
-extension CGSize {
-    public static let appBarIcon = CGSize(width: 22, height: 22)
-    public static let tabBarIcon = CGSize(width: 25, height: 25)
-    public static let settingsIcon = CGSize(width: 29, height: 29)
+public extension CGSize {
+    static let appBarIcon = CGSize(width: 22, height: 22)
+    static let tabBarIcon = CGSize(width: 25, height: 25)
+    static let settingsIcon = CGSize(width: 29, height: 29)
 }
