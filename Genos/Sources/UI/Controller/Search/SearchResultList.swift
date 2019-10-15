@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 open class SearchResultList<V: UITableViewCell>: TableViewList<SearchResult, V>, UISearchResultsUpdating {

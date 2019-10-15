@@ -1,6 +1,36 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
+
+public extension UIViewController {
+    final func showLoginUI() { // present跳转增加导航栏
+        present(UINavigationController(rootViewController: SIGN_IN_CONTROLLER.init()), animated: true, completion: nil)
+    }
+
+    final func showActionSheet(_ alert: UIAlertController, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+        alert.addAction(UIAlertAction(title: "cancel".locale, style: .cancel, handler: cancelHandler))
+        alert.popoverPresentationController?.sourceView = view // 适配iPad
+        alert.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 2)
+        present(alert, animated: true, completion: nil)
+    }
+
+    final func showAlert(_ title: String?, _ message: String? = nil, action: UIAlertAction? = nil, cancelButtonTitle: String? = nil, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancelButtonTitle ?? (action == nil ? "ok" : "cancel").locale, style: .cancel, handler: cancelHandler))
+        action?.let {
+            alert.addAction($0)
+        }
+        present(alert, animated: true, completion: nil)
+    }
+
+    final func showSettingsAlert(_ title: String, _ message: String) {
+        showAlert(title, message, action: UIAlertAction(title: "settings".locale, style: .default) { _ in
+            URL(string: UIApplication.openSettingsURLString)?.let {
+                UIApplication.shared.open($0) // 开启设置
+            }
+        })
+    }
+}
 
 public extension UIViewController {
     var topBarHeight: CGFloat { UIApplication.shared.statusBarFrame.size.height + (navigationController?.navigationBar.frame.height ?? 0) }
@@ -38,8 +68,8 @@ public extension UIViewController {
                     case "version":
                         navigateTo(Version())
                     case "browser":
-                        url.query?.let { it in
-                            it.components(separatedBy: "&").forEach { it in
+                        url.query?.let { query in
+                            query.components(separatedBy: "&").forEach { it in
                                 let component = it.components(separatedBy: "=")
                                 if component[0] == "link" {
                                     component[1].removingPercentEncoding?.let {
@@ -56,7 +86,7 @@ public extension UIViewController {
                 }
             }
         case "http":
-            showAlert(self, message: "为了安全不支持http, 请使用https链接。")
+            showAlert("为了安全不支持http, 请使用https链接。")
         case "https":
             // let options = [UIApplicationOpenURLOptionUniversalLinksOnly : true]
             // UIApplication.shared.open(url, options: options)
@@ -73,7 +103,7 @@ public extension UIViewController {
                 if UIApplication.shared.canOpenURL(it) {
                     UIApplication.shared.open(it)
                 } else {
-                    showAlert(self, message: "请安装 \(ShareUtils.THIRD_PARTY_APPS[scheme]!.locale)") // TODO: 解决强转
+                    showAlert("请安装 \(ShareUtils.THIRD_PARTY_APPS[scheme]!.locale)") // TODO: 解决强转
                 }
             }
         default:

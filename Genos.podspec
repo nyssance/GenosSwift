@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Genos'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.license          = 'MIT'
   s.homepage         = 'https://github.com/nyssance/GenosSwift'
   s.author           = { 'NY' => 'nyssance@icloud.com' }

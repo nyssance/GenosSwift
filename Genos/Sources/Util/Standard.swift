@@ -1,8 +1,9 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 // SO https://stackoverflow.com/questions/47586520/is-there-an-kotlin-equivalent-with-function-in-swift/#47587455
+
 public protocol Standard {}
 
 public extension Standard {
@@ -23,6 +24,7 @@ public extension Standard {
         return self
     }
 
+    @discardableResult
     @inline(__always)
     func `let`<R>(block: (Self) -> R) -> R {
         block(self)

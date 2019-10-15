@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 public enum RefreshMode: Int, CaseIterable {
@@ -104,9 +104,9 @@ open class LoaderController<D: Decodable>: BaseController {
         switch code {
         case 401:
             log.debug(msg)
-            showLoginUI(self)
+            showLoginUI()
         default:
-            showAlert(self, title: "🐳 \(code)", message: msg)
+            showAlert("🐳 \(code)", msg)
         }
     }
 

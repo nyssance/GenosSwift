@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 import Alamofire
@@ -95,10 +95,10 @@ public struct HttpUtils {
                     if failure != nil { // 显示上层来的error函数
                         failure?(code, message)
                     } else {
-                        showAlert(nil, title: "🐳🐳 \(code)", message: message)
+                        showDebugAlert(title: "🐳🐳 \(code)", message)
                     }
                 } else {
-                    showAlert(nil, message: "未知错误, 且response.data为空")
+                    showDebugAlert("未知错误, 且response.data为空")
                 }
             }
             complete?()

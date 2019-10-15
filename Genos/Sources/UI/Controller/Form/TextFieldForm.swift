@@ -87,7 +87,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
             guard value.count >= field.minLength else {
                 if allowsAlert {
                     let message = value.isBlank ? Utils.localizedString("不能为空") : Utils.localizedString("至少\(field.minLength)位")
-                    showAlert(self, message: "\(field.title) \(message)")
+                    showAlert("\(field.title) \(message)")
                 }
                 parameters = [:] // 清空
                 return (false, parameters)

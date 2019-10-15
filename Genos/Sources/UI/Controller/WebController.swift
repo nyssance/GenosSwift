@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 import WebKit
@@ -202,14 +202,14 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
 
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: Error) {
         if (error as NSError).code != URLError.cancelled.rawValue { // 跳新页面不提示错误
-            showAlert(self, message: error.localizedDescription)
+            showAlert(error.localizedDescription)
         }
     }
 
     // MARK: 🔹 WKUIDelegate
 
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        showAlert(self, message: message)
+        showAlert(message)
         completionHandler()
     }
 
@@ -217,7 +217,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         let action = UIAlertAction(title: "ok".locale, style: .default) { _ in
             completionHandler(true)
         }
-        showAlert(self, message: message, action: action) { _ in
+        showAlert(message, action: action) { _ in
             completionHandler(false)
         }
     }

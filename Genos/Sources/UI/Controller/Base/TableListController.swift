@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 open class TableViewListController<D: Decodable, T: Decodable, V: UITableViewCell>: TableViewController<D, T, V>, Listable {

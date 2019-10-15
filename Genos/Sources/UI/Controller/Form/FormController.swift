@@ -37,7 +37,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
         }
 
         if isLoading {
-            showAlert(self, message: "不要重复提交")
+            showAlert("不要重复提交")
         } else {
             if validated() {
                 isLoading = true

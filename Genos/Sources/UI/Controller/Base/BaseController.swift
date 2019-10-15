@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 import Photos
@@ -99,21 +99,21 @@ extension BaseController {
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
                 if [.restricted, .denied].contains(status) {
-                    showAlert(self, message: "请在iPhone的“设置-隐私-相机”选项中，允许\(InfoPlistUtils.APP_DISPLAY_NAME)访问你的相机")
-                    // showSettingsAlert(self, title: "相机未授权", message: "请允许使用相机")
+                    self.showAlert("请在iPhone的“设置-隐私-相机”选项中，允许\(InfoPlistUtils.APP_DISPLAY_NAME)访问你的相机")
+//                    self.showSettingsAlert("相机未授权", "请允许使用相机")
                 } else {
                     picker.sourceType = .camera
                     picker.delegate = self
                     self.present(picker, animated: true, completion: nil)
                 }
             } else {
-                showAlert(self, message: Device.current.isSimulator ? "模拟器没有相机" : "相机不存在, 可能已损坏")
+                self.showAlert(Device.current.isSimulator ? "模拟器没有相机" : "相机不存在, 可能已损坏")
             }
         })
         alert.addAction(UIAlertAction(title: "photos".locale, style: .default) { _ in
             picker.delegate = self
             self.present(picker, animated: true, completion: nil)
         })
-        showActionSheet(self, alert)
+        showActionSheet(alert)
     }
 }

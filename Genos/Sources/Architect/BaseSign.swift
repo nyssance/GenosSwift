@@ -1,5 +1,5 @@
 //
-//  Copyright © 2018 NY <nyssance@icloud.com>. All rights reserved.
+//  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
 open class BaseSign<D: Decodable, V: UITableViewCell>: TextFieldForm<D, Field, V> {
@@ -27,6 +27,6 @@ open class BaseSign<D: Decodable, V: UITableViewCell>: TextFieldForm<D, Field, V
 
     //
     open func onAuthorized(_ data: D) {
-        showAlert(self, message: "登录成功, 请覆写 onDataLoadSuccess 处理收到的数据, 比如 ```updateUser(user) cancel()```")
+        showAlert("登录成功, 请覆写 onDataLoadSuccess 处理收到的数据, 比如 ```updateUser(user) cancel()```")
     }
 }
