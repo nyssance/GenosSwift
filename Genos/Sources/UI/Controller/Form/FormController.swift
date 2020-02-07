@@ -52,7 +52,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
 
     /// 预检, 用于判断按钮状态, 一般不弹框.
     open func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: [String: String]) {
-        return (true, [:])
+        (true, [:])
     }
 
     /// 提交后的检查, 弹框.

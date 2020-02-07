@@ -13,16 +13,16 @@ Pod::Spec.new do |s|
 
   s.dependency 'HMSegmentedControl'
 
-  s.dependency 'Alamofire', '5.0.0-rc.2'
-  s.dependency 'DeviceKit'
-  s.dependency 'Kingfisher', '~> 5.8.2'
-  s.dependency 'SwiftyBeaver', '~> 1.8.2'
-  s.dependency 'SwiftDate'
+  s.dependency 'Alamofire', '5.0.0-rc.3'
+  s.dependency 'DeviceKit', '3.0.0'
+  s.dependency 'Kingfisher', '5.13.0'
+  s.dependency 'SwiftyBeaver', '1.8.4'
+  s.dependency 'SwiftDate', '6.1.0'
   s.dependency 'SwiftEventBus'
-  s.dependency 'SwiftyUserDefaults'
+  s.dependency 'SwiftyUserDefaults', '5.0.0'
 
-  s.dependency 'GrowingTextView'
-  s.dependency 'IQKeyboardManagerSwift'
+  s.dependency 'GrowingTextView', '0.7.2'
+  s.dependency 'IQKeyboardManagerSwift', '6.5.5'
   s.dependency 'JSSAlertView'
   s.dependency 'SwiftIcons'
 end

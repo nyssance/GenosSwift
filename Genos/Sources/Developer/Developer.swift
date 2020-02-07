@@ -26,13 +26,13 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
         switch item.name {
         case "debug":
             let switchView = UISwitch().apply { it in
-                it.isOn = Defaults[.debug]
+                it.isOn = Defaults[\.debug]
                 it.addTarget(self, action: #selector(debug(sender:)), for: .valueChanged)
             }
             view.accessoryView = switchView
         case "test_env":
             let switchView = UISwitch().apply { it in
-                it.isOn = Defaults[.test_env]
+                it.isOn = Defaults[\.test_env]
                 it.addTarget(self, action: #selector(testEnv(sender:)), for: .valueChanged)
             }
             view.accessoryView = switchView
@@ -54,14 +54,14 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
 
     @objc
     func debug(sender: UISwitch) {
-        Defaults[.debug] = sender.isOn
+        Defaults[\.debug] = sender.isOn
         isDebug = sender.isOn
     }
 
     @objc
     func testEnv(sender: UISwitch) { // 切换用户做清理
         // FIXME: 需要手动处理用户退出
-        Defaults[.test_env] = sender.isOn
+        Defaults[\.test_env] = sender.isOn
         // APP_MANAGER.loadSettings()
         exit(0) // 强行关闭app的方法(0正常退出, 1异常退出)
     }

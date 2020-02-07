@@ -54,11 +54,11 @@ public var DAY_FORMAT = "yyyy-MM-dd"
 public var SECOND_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
 // 配置
-public var isDebug = Defaults[.debug]
+public var isDebug = Defaults[\.debug]
 
 public extension DefaultsKeys {
-    static let test_env = DefaultsKey<Bool>("test_env", defaultValue: false)
-    static let debug = DefaultsKey<Bool>("debug", defaultValue: false)
+    var test_env: DefaultsKey<Bool> { .init("test_env", defaultValue: false) }
+    var debug: DefaultsKey<Bool> { .init("debug", defaultValue: false) }
 }
 
 // 命名参考 TARGET_OS_IPHONE, TARGET_IPHONE_SIMULATOR
