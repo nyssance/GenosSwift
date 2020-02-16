@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'HMSegmentedControl'
 
-  s.dependency 'Alamofire', '5.0.0-rc.3'
+  s.dependency 'Alamofire', '5.0.0'
   s.dependency 'DeviceKit', '3.0.0'
   s.dependency 'Kingfisher', '5.13.0'
   s.dependency 'SwiftyBeaver', '1.8.4'
