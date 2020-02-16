@@ -2,7 +2,7 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public struct InfoPlistUtils {
+public struct InfoPlistUtil {
     public static let APP_DISPLAY_NAME = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "" // 用infoDictionary取不到
     public static let APP_NAME = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
     public static let APP_VERSION = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""

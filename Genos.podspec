@@ -6,14 +6,14 @@ Pod::Spec.new do |s|
   s.author           = { 'NY' => 'nyssance@icloud.com' }
   s.summary          = 'The BEST high-level framework for iOS by NY.'
   s.source           = { :git => 'https://github.com/nyssance/GenosSwift.git', :tag => s.version }
-  s.swift_versions   = ['5.0', '5.1']
+  s.swift_versions   = ['5.0', '5.1', '5.2']
   s.ios.deployment_target = '11.0'
   s.source_files     = 'Genos/Sources/**/*.swift'
   s.resource_bundles = { 'Genos' => ['Genos/Resources/**/*'] }
 
   s.dependency 'HMSegmentedControl'
 
-  s.dependency 'Alamofire', '5.0.0'
+  s.dependency 'Alamofire', '~> 5.0'
   s.dependency 'DeviceKit', '3.0.0'
   s.dependency 'Kingfisher', '5.13.0'
   s.dependency 'SwiftyBeaver', '1.8.4'

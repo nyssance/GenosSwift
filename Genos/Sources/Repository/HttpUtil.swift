@@ -6,7 +6,7 @@ import Alamofire
 
 public typealias failureBlock = ((_ code: Int, _ message: String) -> Void)?
 
-public struct HttpUtils {
+public struct HttpUtil {
     /// 上传到 bucket.
     public static func upload(data: Data, endpoint: String, parameters: [String: String], success: ((_ urlString: String) -> Void)? = nil, failure: failureBlock = nil) {
         parameters["key"]?.let { it in
@@ -53,29 +53,41 @@ public struct HttpUtils {
     }
 
     /// 传入参数执行.
-    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: [String: Any] = [:], success: ((_ code: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
+    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: Parameters = [:], success: ((_ code: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         guard let url = URL(string: endpoint) else {
             log.error("\(endpoint) 无法转化为URL")
             return
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        if AUTH_TOKEN.isNotBlank {
-            request.setValue("\(AUTH_PREFIX) \(AUTH_TOKEN)", forHTTPHeaderField: AUTH_HEADER)
-        }
-        if !parameters.isEmpty {
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions()) // 这种方式GET应该无法传入参数
-            } catch {
-                log.error("HTTP 请求 增加参数 失败: \(error)")
-            }
-        }
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // POST请求必须要加这句
-        request.setValue("gzip, deflate", forHTTPHeaderField: "Accept-Encoding")
-        request.setValue(APP_SCHEME, forHTTPHeaderField: "App-Scheme")
-        //        request.setValue("zh-CN", forHTTPHeaderField: "Accept-Language")
+//        var request = URLRequest(url: url)
+//        request.httpMethod = method.rawValue
+//        if AUTH_TOKEN.isNotBlank {
+//            request.setValue("\(AUTH_PREFIX) \(AUTH_TOKEN)", forHTTPHeaderField: AUTH_HEADER)
+//        }
+//        if !parameters.isEmpty {
+//            do {
+//                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions()) // 这种方式GET应该无法传入参数
+//            } catch {
+//                log.error("HTTP 请求 增加参数 失败: \(error)")
+//            }
+//        }
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // POST请求必须要加这句
+//        request.setValue("gzip, deflate", forHTTPHeaderField: "Accept-Encoding")
+//        request.setValue(APP_SCHEME, forHTTPHeaderField: "App-Scheme")
+//        //        request.setValue("zh-CN", forHTTPHeaderField: "Accept-Language")
         // 请求
-        AF.request(request).validate(statusCode: 200..<400).responseJSON { response in
+        var headers: HTTPHeaders = [
+            .accept("application/json"),
+            // .acceptLanguage("zh-CN"),
+            HTTPHeader(name: "App-Scheme", value: APP_SCHEME),
+            .contentType("application/json") // POST请求必须要加这句
+        ]
+        if AUTH_TOKEN.isNotBlank {
+            headers.add(.authorization(bearerToken: AUTH_TOKEN))
+        }
+        AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
             //            log.warning(request.allHTTPHeaderFields)
             //            log.error(response.response?.allHeaderFields)
             let code: Int
@@ -95,13 +107,16 @@ public struct HttpUtils {
                     if failure != nil { // 显示上层来的error函数
                         failure?(code, message)
                     } else {
-                        showDebugAlert(title: "🐳🐳 \(code)", message)
+                        showDebugAlert(title: "🐳 \(code)", message)
                     }
                 } else {
                     showDebugAlert("未知错误, 且response.data为空")
                 }
             }
             complete?()
+        }
+        .responseString { response in
+            print("Response String: \(response.value)")
         }
     }
 }

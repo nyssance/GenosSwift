@@ -2,7 +2,7 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public struct FileUtils {
+public struct FileUtil {
     public static let PATH_DOCUMENTS: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     // TODO: 把所有[0] 和 IndexPath(row: 0, section: 0)换为first
 

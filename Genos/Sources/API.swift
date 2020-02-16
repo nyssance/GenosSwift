@@ -2,7 +2,7 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public struct API {
+public struct Api {
     /// 获取上传参数.
     /// - parameter cloud: 可选参数: aliyun(别名 oss), aws(别名 s3).
     /// - parameter filename: 文件名

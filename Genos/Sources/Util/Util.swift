@@ -2,7 +2,9 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public struct Utils {
+import Alamofire
+
+public struct Util {
     public static func iOS(min: String, max: String = "14.0") -> Bool {
         let version = UIDevice.current.systemVersion
         return (min.compare(version, options: .numeric) == .orderedAscending || min.compare(version, options: .numeric) == .orderedSame) && (max.compare(version, options: .numeric) == .orderedDescending || max.compare(version, options: .numeric) == .orderedSame)
@@ -26,11 +28,11 @@ public struct Utils {
     }
 
     // 网络
-    public static func getPage(_ path: String, parameters: [String: Any] = [:]) -> String {
+    public static func getPage(_ path: String, parameters: Parameters = [:]) -> String {
         getUrl("\(BASE_URL)/\(path)/", parameters: parameters)
     }
 
-    public static func getUrl(_ url: String, parameters: [String: Any]) -> String {
+    public static func getUrl(_ url: String, parameters: Parameters) -> String {
         var i = 0
         var urlString = url
         parameters.forEach { key, value in

@@ -99,7 +99,7 @@ extension BaseController {
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
                 if [.restricted, .denied].contains(status) {
-                    self.showAlert("请在iPhone的“设置-隐私-相机”选项中，允许\(InfoPlistUtils.APP_DISPLAY_NAME)访问你的相机")
+                    self.showAlert("请在iPhone的“设置-隐私-相机”选项中，允许\(InfoPlistUtil.APP_DISPLAY_NAME)访问你的相机")
 //                    self.showSettingsAlert("相机未授权", "请允许使用相机")
                 } else {
                     picker.sourceType = .camera

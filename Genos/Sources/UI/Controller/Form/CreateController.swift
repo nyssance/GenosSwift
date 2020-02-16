@@ -2,6 +2,8 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+import Alamofire
+
 open class CreateController<D: Decodable, T: Field, V: UITableViewCell>: FormController<D, T, V> {
     // MARK: - 👊 Genos
 
@@ -20,7 +22,7 @@ open class CreateController<D: Decodable, T: Field, V: UITableViewCell>: FormCon
         loader?.load()
     }
 
-    open func onCreateParameters(data: D?) -> [String: Any] {
+    open func onCreateParameters(data: D?) -> Parameters {
         [:]
     }
 }

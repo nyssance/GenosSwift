@@ -9,13 +9,13 @@ public class Version: TableViewDetail<String, Item, ItemRow> {
         title = "version".locale
         items = [
             [
-                Item(name: "display_name", subtitle: InfoPlistUtils.APP_DISPLAY_NAME)
+                Item(name: "display_name", subtitle: InfoPlistUtil.APP_DISPLAY_NAME)
             ],
             [
-                Item(name: "name", subtitle: InfoPlistUtils.APP_NAME),
-                Item(name: "version_name", subtitle: InfoPlistUtils.APP_VERSION_NAME),
-                Item(name: "version", subtitle: InfoPlistUtils.APP_VERSION),
-                Item(name: "bundle_identifier", subtitle: InfoPlistUtils.APP_BUNDLE_IDENTIFIER)
+                Item(name: "name", subtitle: InfoPlistUtil.APP_NAME),
+                Item(name: "version_name", subtitle: InfoPlistUtil.APP_VERSION_NAME),
+                Item(name: "version", subtitle: InfoPlistUtil.APP_VERSION),
+                Item(name: "bundle_identifier", subtitle: InfoPlistUtil.APP_BUNDLE_IDENTIFIER)
             ]
         ]
     }

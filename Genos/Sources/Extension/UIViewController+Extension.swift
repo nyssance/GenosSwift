@@ -98,12 +98,12 @@ public extension UIViewController {
             navigateTo(dest)
         case "itms", "itms-apps", "mailto", "maps", "sms", "tel":
             UIApplication.shared.open(url)
-        case let scheme where ShareUtils.THIRD_PARTY_APPS.keys.contains(scheme):
+        case let scheme where ShareUtil.THIRD_PARTY_APPS.keys.contains(scheme):
             URL(string: "\(scheme)://")?.let { it in
                 if UIApplication.shared.canOpenURL(it) {
                     UIApplication.shared.open(it)
                 } else {
-                    showAlert("请安装 \(ShareUtils.THIRD_PARTY_APPS[scheme]!.locale)") // TODO: 解决强转
+                    showAlert("请安装 \(ShareUtil.THIRD_PARTY_APPS[scheme]!.locale)") // TODO: 解决强转
                 }
             }
         default:

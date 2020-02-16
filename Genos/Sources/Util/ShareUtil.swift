@@ -2,7 +2,7 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-public struct ShareUtils {
+public struct ShareUtil {
     public static let THIRD_PARTY_APPS = [
         "mqq": "qq",
         "weixin": "wechat",

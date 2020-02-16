@@ -7,7 +7,7 @@ public class HttpLoader<D: Decodable>: BaseLoader<D> {
         if block {
             // TODO: 待增加
         }
-        HttpUtils.request(call, success: { code, data in
+        HttpUtil.request(call, success: { code, data in
             self.delegate?.onDataLoadSuccess(code, data: data)
         }, failure: { code, message in
             self.delegate?.onDataLoadFailure(code, message: message)

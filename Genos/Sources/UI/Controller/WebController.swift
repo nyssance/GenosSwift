@@ -31,7 +31,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         }
         webView = WKWebView(frame: view.frame, configuration: config).apply { it in
             UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")?.let {
-                it.customUserAgent = "\($0) CM.Genos.iOS/\(InfoPlistUtils.APP_VERSION)" // TODO: 改为appbunle
+                it.customUserAgent = "\($0) CM.Genos.iOS/\(InfoPlistUtil.APP_VERSION)" // TODO: 改为appbunle
             }
             if navigationController != nil {
                 navigationItem.largeTitleDisplayMode = .never

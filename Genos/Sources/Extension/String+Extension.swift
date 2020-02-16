@@ -55,7 +55,7 @@ public extension String {
         return s
     }
 
-    var locale: String { Utils.localizedString(self) }
+    var locale: String { Util.localizedString(self) }
 
     var localeSystem: String { // Bundle(for: UIButton.self) 也可
         if let bundle = Bundle(identifier: "com.apple.UIKit") {
