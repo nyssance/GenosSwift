@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import Alamofire
-
 open class TextFieldUpdate<D: Decodable, T: Field, V: UITableViewCell>: TextFieldForm<D, T, V> {
     // MARK: - 👊 Genos
 

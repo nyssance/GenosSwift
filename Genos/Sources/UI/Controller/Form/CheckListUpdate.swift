@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import Alamofire
-
 open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, ItemRow> { // CheckList时候只有update, 没有create的情况
     // MARK: - 👊 Genos
 

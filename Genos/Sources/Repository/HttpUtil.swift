@@ -4,6 +4,7 @@
 
 import Alamofire
 
+public typealias Parameters = Alamofire.Parameters
 public typealias failureBlock = ((_ status: Int, _ message: String) -> Void)?
 
 public struct HttpUtil {

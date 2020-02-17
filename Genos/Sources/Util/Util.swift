@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import Alamofire
-
 public struct Util {
     public static func iOS(min: String, max: String = "14.0") -> Bool {
         let version = UIDevice.current.systemVersion

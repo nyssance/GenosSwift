@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import Alamofire
-
 public enum SubmitButtonType: Int, CaseIterable {
     case button, navigation
 }

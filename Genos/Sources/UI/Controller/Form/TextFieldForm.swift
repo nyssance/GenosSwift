@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import Alamofire
-
 open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormController<D, T, V>, UITextFieldDelegate, UIGestureRecognizerDelegate {
     public var textFields: [UITextField] = []
     var originalText = "" // 暂存用来判断是否重复
