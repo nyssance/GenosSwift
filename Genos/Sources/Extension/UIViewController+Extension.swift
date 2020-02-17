@@ -50,7 +50,7 @@ public extension UIViewController {
             showDebugAlert("\(item.link) 无法转成URL")
             return
         }
-        switch url.scheme ?? "" {
+        switch url.scheme.orEmpty() {
         case APP_SCHEME:
             if let dest = item.destination?.init() {
                 if item.title.isNotBlank { // 如果item的title不为空, 用item的title

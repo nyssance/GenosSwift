@@ -69,7 +69,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
 
     /// 处理light风格的滚动, 需要在TableViewController和CollectionViewController中分别继承
     open func onScrollViewDidScroll(_ scrollView: UIScrollView) {
-        log.verbose("系统主题: \(String(describing: APP_THEME.navigationBarStyle)), 自定义主题: \(String(describing: theme != nil ? theme!.navigationBarStyle : nil)), 当前TopBar高度: \(topBarHeight)")
+        log.verbose("系统主题: \(APP_THEME.navigationBarStyle), 自定义主题: \(String(describing: theme != nil ? theme!.navigationBarStyle : nil)), 当前TopBar高度: \(topBarHeight)")
         if let navigationBar = navigationController?.navigationBar, getTheme().navigationBarStyle == .light {
             if topBarHeight == TOP_BAR_HEIGHT, navigationController?.navigationBar.shadowImage != nil {
                 // iOS 11之后的light风格默认的线都去掉了, 无大标题的时候也需要需要补上, 利用scrollView进来默认刷一次的特性

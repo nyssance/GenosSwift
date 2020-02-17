@@ -2,6 +2,8 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+import Alamofire
+
 open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormController<D, T, V>, UITextFieldDelegate, UIGestureRecognizerDelegate {
     public var textFields: [UITextField] = []
     var originalText = "" // 暂存用来判断是否重复
@@ -42,7 +44,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
                 mirror?.let {
                     it.text = getValue(field.name.camelCased(), mirror: $0) as? String
                 }
-                originalText = it.text ?? ""
+                originalText = it.text.orEmpty()
             }
             textFields.append(textField)
         }
@@ -80,10 +82,10 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         // TODO: 1. 键盘return也可以设为disabled 2. 增加长度检查
     }
 
-    open override func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: [String: String]) {
+    open override func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: Parameters) {
 //        adapter.getCurrentList().enumerated().forEach { i, field in
         for (i, field) in adapter.getCurrentList().enumerated() {
-            let value = textFields[i].text?.trimmed() ?? ""
+            let value = textFields[i].text.orEmpty().trimmed()
             guard value.count >= field.minLength else {
                 if allowsAlert {
                     let message = value.isBlank ? Util.localizedString("不能为空") : Util.localizedString("至少\(field.minLength)位")
@@ -97,7 +99,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         return (true, parameters)
     }
 
-    open override func onSubmit(_ parameters: [String: String]) {
+    open override func onSubmit(_ parameters: Parameters) {
         textFields.forEach { it in
             it.text = it.text?.trimmed() // 提交前trim, 边输入边trim中文会有问题
         }

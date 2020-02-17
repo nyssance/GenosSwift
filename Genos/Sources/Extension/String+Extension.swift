@@ -2,6 +2,17 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+extension Optional where Wrapped == String {
+    func orEmpty() -> String {
+        switch self {
+        case let .some(value):
+            return String(describing: value)
+        case _:
+            return ""
+        }
+    }
+}
+
 public extension String {
     func trimmed(set: CharacterSet = .whitespaces) -> String {
         trimmingCharacters(in: set)

@@ -16,7 +16,7 @@ open class SearchResultList<V: UITableViewCell>: TableViewList<SearchResult, V>,
     // MARK: - 🔹 UISearchResultsUpdating
 
     public func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text ?? ""
+        let searchString = searchController.searchBar.text.orEmpty()
         // let dataArray = adapter.data.filter() { ($0 as? SearchResult)?.title.contains(searchString) ?? false }
         if searchString.isBlank {
             //            dataArray = originalData

@@ -4,36 +4,35 @@
 
 import Alamofire
 
-public typealias failureBlock = ((_ code: Int, _ message: String) -> Void)?
+public typealias failureBlock = ((_ status: Int, _ message: String) -> Void)?
 
 public struct HttpUtil {
     /// 上传到 bucket.
-    public static func upload(data: Data, endpoint: String, parameters: [String: String], success: ((_ urlString: String) -> Void)? = nil, failure: failureBlock = nil) {
-        parameters["key"]?.let { it in
-            AF.upload(multipartFormData: { multipartFormData in
-                parameters.forEach { key, value in
-                    value.data(using: .utf8)?.let {
-                        multipartFormData.append($0, withName: key)
-                    }
-                }
-                parameters["Content-Type"]?.let {
-                    multipartFormData.append(data, withName: "file", fileName: it, mimeType: $0)
-                }
-            }, to: endpoint).responseJSON { response in
-                switch response.result {
-                case .success:
-                    success?(endpoint + it)
-                case let .failure(error):
-                    let code = response.response?.statusCode ?? 999
-                    failure?(code, error.localizedDescription)
-                    debugPrint(response)
-                }
-            }
-        }
+    public static func upload(data: Data, endpoint: String, parameters: Parameters, success: ((_ urlString: String) -> Void)? = nil, failure: failureBlock = nil) {
+//        parameters["key"]?.let { it in
+//            AF.upload(multipartFormData: { multipartFormData in
+//                parameters.forEach { key, value in
+//                    value.data(using: .utf8)?.let {
+//                        multipartFormData.append($0, withName: key)
+//                    }
+//                }
+//                parameters["Content-Type"]?.let {
+//                    multipartFormData.append(data, withName: "file", fileName: it, mimeType: $0)
+//                }
+//            }, to: endpoint).responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    success?(endpoint + it)
+//                case let .failure(error):
+//                    let status = response.response?.statusCode ?? 999
+//                    failure?(status, error.localizedDescription)
+//                    debugPrint(response)
+//                }
+//            }
+//        }
     }
 
-    // SO https://stackoverflow.com/questions/46222784/redundant-conformance-constraint-warning-in-swift-4
-    public static func request<D: Decodable>(_ call: Call<D>, success: @escaping ((_ code: Int, _ data: D) -> Void), failure: failureBlock = nil, complete: (() -> Void)? = nil) {
+    public static func request<D: Decodable>(_ call: Call<D>, success: @escaping ((_ status: Int, _ data: D) -> Void), failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         var endpoint = call.endpoint
         if !endpoint.contains("://") {
             endpoint = "\(BASE_URL)/\(endpoint)"
@@ -53,7 +52,7 @@ public struct HttpUtil {
     }
 
     /// 传入参数执行.
-    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: Parameters = [:], success: ((_ code: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
+    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: Parameters = [:], success: ((_ status: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         guard let url = URL(string: endpoint) else {
             log.error("\(endpoint) 无法转化为URL")
             return
@@ -88,35 +87,35 @@ public struct HttpUtil {
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseJSON { response in
-            //            log.warning(request.allHTTPHeaderFields)
-            //            log.error(response.response?.allHeaderFields)
-            let code: Int
-            switch response.result {
-            case .success:
-                code = response.response?.statusCode ?? 666
-                log.debug("✅ \(code) \(method.rawValue) 🔗 \(endpoint)")
-                success?(code, response)
-            case let .failure(error):
-                code = response.response?.statusCode ?? 999
-                log.debug("❌ \(code) \(method.rawValue) 🔗 \(endpoint)")
-                if let data = response.data {
-                    let debug = isDebug ? "\(endpoint)\n\n" : ""
-                    let utf8Text = String(data: data, encoding: .utf8) // 解决DRF-JWT返回unicode的问题
-                    // response.result 在 AF 5.0 中不存在
-                    let message = "\(debug)\(utf8Text ?? error.localizedDescription)"
-                    if failure != nil { // 显示上层来的error函数
-                        failure?(code, message)
+                //            log.warning(request.allHTTPHeaderFields)
+                //            log.error(response.response?.allHeaderFields)
+                let status: Int
+                switch response.result {
+                case .success:
+                    status = response.response?.statusCode ?? 666
+                    log.debug("✅ \(status) \(method.rawValue) 🔗 \(endpoint)")
+                    success?(status, response)
+                case let .failure(error):
+                    status = response.response?.statusCode ?? 999
+                    log.debug("❌ \(status) \(method.rawValue) 🔗 \(endpoint)")
+                    if let data = response.data {
+                        let debug = isDebug ? "\(endpoint)\n\n" : ""
+                        let utf8Text = String(data: data, encoding: .utf8) // 解决DRF-JWT返回unicode的问题
+                        // response.result 在 AF 5.0 中不存在
+                        let message = "\(debug)\(utf8Text ?? error.localizedDescription)"
+                        if failure != nil { // 显示上层来的error函数
+                            failure?(status, message)
+                        } else {
+                            showDebugAlert(title: "🐳 \(status)", message)
+                        }
                     } else {
-                        showDebugAlert(title: "🐳 \(code)", message)
+                        showDebugAlert("未知错误, 且response.data为空")
                     }
-                } else {
-                    showDebugAlert("未知错误, 且response.data为空")
                 }
+                complete?()
             }
-            complete?()
-        }
-        .responseString { response in
-            print("Response String: \(response.value)")
-        }
+            .responseString { response in
+                print("Response String: \(response.value.orEmpty())")
+            }
     }
 }

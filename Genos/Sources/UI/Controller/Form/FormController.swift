@@ -2,6 +2,8 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+import Alamofire
+
 public enum SubmitButtonType: Int, CaseIterable {
     case button, navigation
 }
@@ -10,7 +12,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
     public var submitButton: UIButton!
     public var submitButtonType = SubmitButtonType.button
 
-    public var parameters: [String: String] = [:]
+    public var parameters: Parameters = [:]
 
     // MARK: - 👊 Genos
 
@@ -51,17 +53,17 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
     }
 
     /// 预检, 用于判断按钮状态, 一般不弹框.
-    open func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: [String: String]) {
+    open func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: Parameters) {
         (true, [:])
     }
 
     /// 提交后的检查, 弹框.
-    open func onValidate(_ parameters: [String: String]) -> Bool {
+    open func onValidate(_ parameters: Parameters) -> Bool {
         true
     }
 
     /// 提交, 不要再在里面做检查, 会导致 isLoading 状态不正确.
-    open func onSubmit(_ parameters: [String: String]) {
+    open func onSubmit(_ parameters: Parameters) {
         call?.parameters = parameters
         loader?.load()
     }

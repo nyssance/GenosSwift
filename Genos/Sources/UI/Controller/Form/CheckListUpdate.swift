@@ -2,6 +2,8 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+import Alamofire
+
 open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, ItemRow> { // CheckList时候只有update, 没有create的情况
     // MARK: - 👊 Genos
 
@@ -24,7 +26,7 @@ open class CheckListUpdate<D: Decodable>: SingleFieldFormController<D, Item, Ite
         }
     }
 
-    open override func onSubmit(_ parameters: [String: String]) {
+    open override func onSubmit(_ parameters: Parameters) {
         super.onSubmit(parameters)
         if call?.method != .patch {
             showDebugAlert("更新接口建议使用 PATCH, 目前为 \(call?.method as Optional)")

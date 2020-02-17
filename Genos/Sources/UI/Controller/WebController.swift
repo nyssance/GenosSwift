@@ -88,7 +88,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
         if link.isBlank { // 没有link, 加载字符串
             webView.loadHTMLString(data, baseURL: nil)
         } else if let url = URL(string: link) {
-            switch url.scheme ?? "" {
+            switch url.scheme.orEmpty() {
             case "http", "https":
                 // SO https://stackoverflow.com/questions/26573137/can-i-set-the-cookies-to-be-used-by-a-wkwebview
                 let cookies = HTTPCookieStorage.shared.cookies(for: url) ?? []
@@ -159,7 +159,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else { return }
         //        if let url = navigationAction.request.url {
-        if ["http", "https", "about"].contains(url.scheme ?? "") {
+        if ["http", "https", "about"].contains(url.scheme.orEmpty()) {
             url.host?.let { host in
                 if let webHostTexts = WEB_HOST_TEXTS {
                     let hosts = Array(webHostTexts.keys).filter { $0.contains(host) }

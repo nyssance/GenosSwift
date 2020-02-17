@@ -94,19 +94,19 @@ open class LoaderController<D: Decodable>: BaseController {
         }
     }
 
-    open func onDataLoadSuccess(_ code: Int, data: D) {
+    open func onDataLoadSuccess(_ status: Int, data: D) {
         setData(data)
         onDisplay(data: data)
     }
 
-    open func onDataLoadFailure(_ code: Int, message: String) {
+    open func onDataLoadFailure(_ status: Int, message: String) {
         let msg = (isDebug ? "\(call?.endpoint as Optional)\n\n" : "") + message
-        switch code {
+        switch status {
         case 401:
             log.debug(msg)
             showLoginUI()
         default:
-            showAlert("🐳 \(code)", msg)
+            showAlert("🐳 \(status)", msg)
         }
     }
 
@@ -118,12 +118,12 @@ open class LoaderController<D: Decodable>: BaseController {
     }
 
     /// 暂时不用.
-    public func onDataChanged(_ data: D?, code: Int, message: String) {
+    public func onDataChanged(_ data: D?, status: Int, message: String) {
         onDataLoadComplete()
         if let data = data {
-            onDataLoadSuccess(code, data: data)
+            onDataLoadSuccess(status, data: data)
         } else {
-            onDataLoadFailure(code, message: message)
+            onDataLoadFailure(status, message: message)
         }
     }
 

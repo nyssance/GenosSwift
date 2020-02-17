@@ -2,6 +2,8 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
+import Alamofire
+
 public enum Cloud: String, CaseIterable {
     case Aliyun = "aliyun"
     case AWS = "aws"
@@ -16,7 +18,7 @@ public struct CloudUtil {
     }
 
     /// 获取云存储上传参数.
-    private static func getUploadParams(_ cloud: Cloud, filename: String, success: @escaping (_ endpoint: String, _ params: [String: String]) -> Void) {
+    private static func getUploadParams(_ cloud: Cloud, filename: String, success: @escaping (_ endpoint: String, _ params: Parameters) -> Void) {
         // 请求 API 上传需要的参数
         // let parameters = ["filename": filename]
         // filename: 文件保存全路径, 默认: upload/uuid4().hex.json
