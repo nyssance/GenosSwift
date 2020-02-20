@@ -5,19 +5,12 @@
 import DeviceKit
 import SwiftyUserDefaults
 
-public var BASE_URL = "https://www.必填.com"
-
-public var APP_ID = "必填"
-public var APP_COLOR = 0x007AFF
 public var APP_SCHEME = "genos"
 
 public var AUTH_TOKEN = ""
 public let JSON_DECODER = JSONDecoder()
 
 public var LIST_START_PAGE = 1
-
-public var SIGN_UP_CONTROLLER: UIViewController.Type = UIViewController.self
-public var SIGN_IN_CONTROLLER: UIViewController.Type = UIViewController.self
 
 public typealias Routes = [String: UIViewController.Type]
 
@@ -47,7 +40,7 @@ public extension Config {
 public struct Global: Config {}
 
 /// 主题
-public var APP_THEME = Theme()
+public var APP_THEME = Theme(color: .colorWithHex(0x007AFF))
 
 public var WEB_HOST_TEXTS: [String: String]?
 

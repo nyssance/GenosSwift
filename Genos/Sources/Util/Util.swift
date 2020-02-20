@@ -8,11 +8,11 @@ public struct Util {
         return (min.compare(version, options: .numeric) == .orderedAscending || min.compare(version, options: .numeric) == .orderedSame) && (max.compare(version, options: .numeric) == .orderedDescending || max.compare(version, options: .numeric) == .orderedSame)
     }
 
-    public static func appLink(id: String) -> String {
+    public static func appLink(_ id: String) -> String {
         "itms-apps://itunes.apple.com/app/id\(id)"
     }
 
-    public static func appReviewsLink(id: String = APP_ID) -> String {
+    public static func appReviewsLink(_ id: String) -> String {
         "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=\(id)"
     }
 
@@ -23,11 +23,6 @@ public struct Util {
             return key != value ? value : NSLocalizedString(key, bundle: bundle, comment: "")
         }
         return key
-    }
-
-    // 网络
-    public static func getPage(_ path: String, parameters: Parameters = [:]) -> String {
-        getUrl("\(BASE_URL)/\(path)/", parameters: parameters)
     }
 
     public static func getUrl(_ url: String, parameters: Parameters) -> String {

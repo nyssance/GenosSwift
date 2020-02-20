@@ -10,9 +10,6 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
     public override func onCreate() {
         setNavigationBar(style: .default, from: "developer")
         items = [
-            //            [
-            //                Item(name: "url", subtitle: BASE_URL)
-            //            ],
             [
                 Item(name: "test_env", title: "测试环境"),
                 Item(name: "debug"),

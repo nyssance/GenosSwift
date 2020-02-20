@@ -2,7 +2,7 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-open class SignInController<D: Decodable, V: UITableViewCell>: BaseSign<D, V> {
+open class LoginController<D: Decodable, V: UITableViewCell>: BaseSign<D, V> {
     // MARK: - 💖 生命周期 (Lifecycle)
 
     open override func viewWillAppear(_ animated: Bool) {

@@ -104,7 +104,7 @@ open class LoaderController<D: Decodable>: BaseController {
         switch status {
         case 401:
             log.debug(msg)
-            showLoginUI()
+            navigateTo("login")
         default:
             showAlert("🐳 \(status)", msg)
         }

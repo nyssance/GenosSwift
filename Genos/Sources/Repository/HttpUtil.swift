@@ -34,11 +34,7 @@ public struct HttpUtil {
     }
 
     public static func request<D: Decodable>(_ call: Call<D>, success: @escaping ((_ status: Int, _ data: D) -> Void), failure: failureBlock = nil, complete: (() -> Void)? = nil) {
-        var endpoint = call.endpoint
-        if !endpoint.contains("://") {
-            endpoint = "\(BASE_URL)/\(endpoint)"
-        }
-        request(call.method, endpoint: endpoint, parameters: call.parameters ?? [:], success: { code, response in
+        request(call.method, endpoint: call.endpoint, parameters: call.parameters ?? [:], success: { code, response in
             if let data = response.data {
                 do {
                     let entity = try JSON_DECODER.decode(D.self, from: data)

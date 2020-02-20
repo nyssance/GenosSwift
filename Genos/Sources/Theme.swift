@@ -8,9 +8,9 @@ open class Theme {
     }
 
     // 颜色
-    public var colorPrimary = UIColor.colorWithHex(APP_COLOR)
-    public var colorPrimaryDark = UIColor.colorWithHex(APP_COLOR)
-    public var colorAccent = UIColor.colorWithHex(APP_COLOR)
+    public var colorPrimary: UIColor
+    public var colorPrimaryDark: UIColor
+    public var colorAccent: UIColor
     // 背景色
     public var colorBackground: UIColor? // 系统默认应该是 0xF5F5F5
     public var colorListSelector: UIColor?
@@ -22,8 +22,8 @@ open class Theme {
     public var sectionheaderFont: UIFont?
     // 导航栏
     public var navigationBarStyle = BarStyle.default
-    public var navigationBarTintColor: UIColor!
-    public var navigationBarProgressTintColor: UIColor!
+    public var navigationBarTintColor: UIColor
+    public var navigationBarProgressTintColor: UIColor
     public var backItemStyle: String? // 返回按钮样式
     // 导航栏 :: 标题，大标题
     public var prefersLargeTitles = true // 默认大标题
@@ -44,10 +44,15 @@ open class Theme {
     public var largeRowHeight: CGFloat = 80
     public var GROUP_TABLE_BOTTOM_HEIGHT: CGFloat = 27.5
 
-    public init() {
-        navigationBarTintColor = colorPrimary
-        navigationBarProgressTintColor = colorPrimary
-        textColorPrimary?.let {
+    public init(color: UIColor, textColor: UIColor? = nil) {
+        colorPrimary = color
+        colorPrimaryDark = color
+        colorAccent = color
+        navigationBarTintColor = color
+        navigationBarProgressTintColor = color
+        textColor?.let {
+            textColorPrimary = $0
+            navigationBarTintColor = $0
             titleTextAttributes = [.foregroundColor: $0]
         }
     }

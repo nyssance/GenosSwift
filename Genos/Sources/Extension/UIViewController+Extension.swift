@@ -23,6 +23,12 @@ public extension UIViewController {
     }
 
     func navigateTo(_ link: String, title: String = "", animated: Bool = true) {
+        if link.isBlank {
+            return
+        }
+        if link.contains(" ") {
+            return
+        }
         let url = URL(string: link.contains("://") ? link : "\(APP_SCHEME)://\(link)") ?? URL(string: "exception")!
         switch url.scheme.orEmpty() {
         case APP_SCHEME:
@@ -52,6 +58,7 @@ public extension UIViewController {
                     switch host {
                     case "": name = "version" // 仿Chrome, chrome://跳转到chrome://version
                     case "about", "credits", "discards", "help",
+                         "login", "signon",
                          "settings", "system", "profile", "version": name = host
                     default: name = "\(host.singularize())\(url.path.isBlank ? "List" : "Detail")"
                     }
@@ -89,17 +96,17 @@ public extension UIViewController {
         }
     }
 
-    final func navigateTo(_ viewController: UIViewController, animated: Bool = true) {
-        viewController.hidesBottomBarWhenPushed = true // 导航栏右侧黑影修复方法, 在AppDelegate设置UIWindow背景为白色 SO https://stackoverflow.com/questions/22516046/ios7-strange-animation-when-using-hidesbottombarwhenpushed
-        navigationController?.pushViewController(viewController, animated: animated) // 手动push
+    final func navigateTo(_ viewController: UIViewController, push: Bool = true, animated: Bool = true) {
+        if push {
+            viewController.hidesBottomBarWhenPushed = true // 导航栏右侧黑影修复方法, 在AppDelegate设置UIWindow背景为白色 SO https://stackoverflow.com/questions/22516046/ios7-strange-animation-when-using-hidesbottombarwhenpushed
+            navigationController?.pushViewController(viewController, animated: animated) // 手动push
+        } else { // present跳转增加导航栏
+            present(UINavigationController(rootViewController: viewController), animated: animated, completion: nil)
+        }
     }
 }
 
 public extension UIViewController {
-    final func showLoginUI() { // present跳转增加导航栏
-        present(UINavigationController(rootViewController: SIGN_IN_CONTROLLER.init()), animated: true, completion: nil)
-    }
-
     final func showActionSheet(_ alert: UIAlertController, cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         alert.addAction(UIAlertAction(title: "cancel".locale, style: .cancel, handler: cancelHandler))
         alert.popoverPresentationController?.sourceView = view // 适配iPad
