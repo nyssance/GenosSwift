@@ -84,8 +84,8 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
 
     /// 是否需要取消选中
     func needDeselect(_ item: T) -> Bool {
-        if let a = item as? Item, let scheme = URL(string: a.link)?.scheme {
-            return !["https", APP_SCHEME].contains(scheme) // 如果不是app内调转或访问网页, 为外链app或动作, 取消选中.
+        if let it = item as? Item, it.isInternal() {
+            return false // 如果不是app内调转或访问网页, 为外链app或动作, 取消选中.
         }
         return true
     }

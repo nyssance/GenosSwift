@@ -10,3 +10,11 @@ open class Detail<D: Decodable>: LoaderController<D> {
         }
     }
 }
+
+public struct Exception: Hashable, Codable {
+    var message: String = "exception".locale
+}
+
+open class Blank<D: Decodable>: Detail<D> {}
+
+public class Exception404: Detail<Exception> {}

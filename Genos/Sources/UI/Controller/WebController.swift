@@ -126,6 +126,8 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
 
     @objc
     public func more() {
+        // let options = [UIApplicationOpenURLOptionUniversalLinksOnly : true]
+        // UIApplication.shared.open(url, options: options)
         URL(string: link)?.let {
             UIApplication.shared.open($0)
         }
@@ -176,7 +178,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
                 textLayer.frame.origin = CGPoint(x: (SCREEN_WIDTH - textLayer.bounds.width) / 2, y: getTheme().padding)
             }
         } else {
-            navigate(Item(link: url.absoluteString))
+            navigateTo(url.absoluteString)
         }
         //        }
         decisionHandler(.allow)

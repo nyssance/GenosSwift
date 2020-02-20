@@ -14,7 +14,7 @@ extension Optional where Wrapped == String {
 }
 
 public extension String {
-    func trimmed(set: CharacterSet = .whitespaces) -> String {
+    func trim(set: CharacterSet = .whitespaces) -> String {
         trimmingCharacters(in: set)
     }
 
@@ -66,6 +66,22 @@ public extension String {
         return s
     }
 
+    func pluralize() -> String {
+        "\(self)s"
+    }
+
+    func singularize() -> String {
+        String(prefix(count - 1))
+    }
+
+    func removePrefix(_ prefix: String) -> String {
+        hasPrefix(prefix) ? String(dropFirst(prefix.count)) : self
+    }
+
+    func removeSuffix(_ suffix: String) -> String {
+        hasSuffix(suffix) ? String(dropLast(suffix.count)) : self
+    }
+
     var locale: String { Util.localizedString(self) }
 
     var localeSystem: String { // Bundle(for: UIButton.self) 也可
@@ -75,7 +91,7 @@ public extension String {
         return self
     }
 
-    var isBlank: Bool { trimmed().isEmpty }
+    var isBlank: Bool { trim().isEmpty }
 
     var isNotBlank: Bool { !isBlank }
 

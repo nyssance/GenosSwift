@@ -53,7 +53,7 @@ public struct HttpUtil {
     }
 
     /// 传入参数执行.
-    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: Parameters = [:], success: ((_ status: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
+    public static func request(_ method: HTTPMethod = .get, endpoint: String, parameters: Parameters? = nil, success: ((_ status: Int, _ response: AFDataResponse<Any>) -> Void)?, failure: failureBlock = nil, complete: (() -> Void)? = nil) {
         guard let url = URL(string: endpoint) else {
             log.error("\(endpoint) 无法转化为URL")
             return
@@ -84,7 +84,8 @@ public struct HttpUtil {
         if AUTH_TOKEN.isNotBlank {
             headers.add(.authorization(bearerToken: AUTH_TOKEN))
         }
-        AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+//        AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        AF.request(url, method: method, parameters: parameters, headers: headers)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseJSON { response in

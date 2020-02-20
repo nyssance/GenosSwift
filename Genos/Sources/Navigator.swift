@@ -3,5 +3,5 @@
 //
 
 public struct Navigator {
-    public static func routes(_ controller: UIViewController, path: String) {}
+    public static func routes(_ controller: UIViewController.Type, path: String) {}
 }

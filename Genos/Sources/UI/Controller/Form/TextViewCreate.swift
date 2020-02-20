@@ -62,7 +62,7 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
     public override func create() {
         if !isLoading {
             isLoading = true
-            onCreate(string: textView.text.trimmed(set: .whitespacesAndNewlines)) // TODO: 是否精确
+            onCreate(string: textView.text.trim(set: .whitespacesAndNewlines)) // TODO: 是否精确
         }
     }
 

@@ -83,7 +83,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
     open override func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: Parameters) {
 //        adapter.getCurrentList().enumerated().forEach { i, field in
         for (i, field) in adapter.getCurrentList().enumerated() {
-            let value = textFields[i].text.orEmpty().trimmed()
+            let value = textFields[i].text.orEmpty().trim()
             guard value.count >= field.minLength else {
                 if allowsAlert {
                     let message = value.isBlank ? Util.localizedString("不能为空") : Util.localizedString("至少\(field.minLength)位")
@@ -99,7 +99,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
 
     open override func onSubmit(_ parameters: Parameters) {
         textFields.forEach { it in
-            it.text = it.text?.trimmed() // 提交前trim, 边输入边trim中文会有问题
+            it.text = it.text?.trim() // 提交前trim, 边输入边trim中文会有问题
         }
         view.endEditing(false) // 参考官方, 更新前先关闭键盘
         super.onSubmit(parameters)

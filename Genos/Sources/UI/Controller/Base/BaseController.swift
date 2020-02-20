@@ -29,8 +29,14 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
         super.loadView()
         navigationController?.navigationBar.prefersLargeTitles = getTheme().prefersLargeTitles
         navigationItem.largeTitleDisplayMode = .always
-        if !(self is WebController) { // WebController默认无title
-            title = title ?? UITag.replacingOccurrences(of: "_list", with: "s").locale // 从上一个界面传入destination.title 或 从UITag生成
+        if !(self is WebController), title == nil {
+            if UITag.hasSuffix("_list") {
+                title = UITag.removeSuffix("_list").pluralize().locale
+            } else if UITag.hasSuffix("_detail") {
+                title = UITag.removeSuffix("_detail").locale
+            } else {
+                title = UITag.locale
+            }
         }
         onBeforeCreate()
         onCreate()

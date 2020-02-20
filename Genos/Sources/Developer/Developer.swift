@@ -44,7 +44,7 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
     public override func onOpenItem(item: Item) {
         switch item.name {
         case "version":
-            navigateTo(Version())
+            navigateTo("version")
         default:
             break
         }
