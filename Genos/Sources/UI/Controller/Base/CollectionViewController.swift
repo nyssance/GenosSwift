@@ -5,11 +5,11 @@
 open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionViewCell>: AbsListViewController<D, T, UICollectionView, V>, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: - 👊 Genos
 
-    public override func onCreateListView(y: CGFloat) -> UICollectionView {
+    public override func onCreateListView() -> UICollectionView {
         let layout = UICollectionViewFlowLayout().apply {
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), collectionViewLayout: layout).apply { it in
+        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout).apply { it in
             it.dataSource = self
             it.prefetchDataSource = self
             it.delegate = self

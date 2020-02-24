@@ -25,8 +25,8 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
 
     // MARK: - 👊 Genos
 
-    public override func onCreateListView(y: CGFloat) -> UITableView {
-        let tableView = UITableView(frame: CGRect(x: 0, y: y, width: view.frame.width, height: view.frame.height - y), style: tableViewStyle).apply { it in
+    public override func onCreateListView() -> UITableView {
+        let tableView = UITableView(frame: view.frame, style: tableViewStyle).apply { it in
             it.dataSource = self
             it.prefetchDataSource = self
             it.delegate = self

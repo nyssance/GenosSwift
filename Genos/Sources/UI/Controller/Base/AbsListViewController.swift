@@ -2,8 +2,6 @@
 //  Copyright © 2019 NY <nyssance@icloud.com>. All rights reserved.
 //
 
-import HMSegmentedControl
-
 open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIView>: LoaderController<D> {
     // MARK: - 🍀 属性
 
@@ -11,28 +9,19 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
     public var adapter: IndexListAdapter<T> = IndexListAdapter()
     public var tileId: String { "list_item" }
 
-    public var segmentedControl: HMSegmentedControl?
-
     // MARK: - 👊 Genos
 
     override func onCreateView() {
-        var y = segmentedControl?.frame.height ?? 0
-        if y > 0 { // TODO: 临时使用这个方法调整正确高度
-            y += topBarHeight
-        }
-        listView = onCreateListView(y: y).apply { it in
+        listView = onCreateListView().apply { it in
             it.alwaysBounceVertical = true // 永远可拖动
             it.backgroundColor = getTheme().colorBackground
             it.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
         }
         view.addSubview(listView)
-        segmentedControl?.let {
-            view.addSubview($0)
-        }
         scrollView = listView // 因为刷新全部移到LoaderController中，所以子类的scrollView要传递给LoaderController
     }
 
-    func onCreateListView(y: CGFloat) -> LV {
+    func onCreateListView() -> LV {
         listView
         // fatalError("这个方法必须被覆盖")
     }
