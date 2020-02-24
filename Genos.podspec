@@ -11,18 +11,17 @@ Pod::Spec.new do |s|
   s.source_files     = 'Genos/Sources/**/*.swift'
   s.resource_bundles = { 'Genos' => ['Genos/Resources/**/*'] }
 
-  s.dependency 'HMSegmentedControl'
-
   s.dependency 'Alamofire', '~> 5.0'
-  s.dependency 'DeviceKit', '3.0.0'
-  s.dependency 'Kingfisher', '5.13.0'
+  s.dependency 'DeviceKit', '~> 3.0'
+  s.dependency 'Kingfisher', '~> 5.0'
   s.dependency 'SwiftyBeaver', '1.8.4'
-  s.dependency 'SwiftDate', '6.1.0'
+  s.dependency 'SwiftDate', '~> 6.0'
   s.dependency 'SwiftEventBus'
-  s.dependency 'SwiftyUserDefaults', '5.0.0'
+  s.dependency 'SwiftyUserDefaults', '~> 5.0'
 
   s.dependency 'GrowingTextView', '0.7.2'
   s.dependency 'IQKeyboardManagerSwift', '6.5.5'
   s.dependency 'JSSAlertView'
+  s.dependency 'Parchment', '2.0.1'
   s.dependency 'SwiftIcons'
 end

@@ -31,8 +31,6 @@ pod 'Genos'
 
 ## Vendor
 
-- Objective-C
-  - [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl)
 - Swift
   - [Alamofire](https://github.com/Alamofire/Alamofire)
   - [DeviceKit](https://github.com/dennisweissmann/DeviceKit)
@@ -41,10 +39,11 @@ pod 'Genos'
   - [SwiftDate](https://github.com/malcommac/SwiftDate)
   - [SwiftEventBus](https://github.com/cesarferreira/SwiftEventBus)
   - [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
-- Swift UI Control
+- UI Control
   - [GrowingTextView](https://github.com/KennethTsang/GrowingTextView)
   - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager)
   - [JSSAlertView](https://github.com/openstakes/JSSAlertView)
+  - [Parchment](https://github.com/rechsteiner/Parchment)
   - [SwiftIcons](https://github.com/ranesr/SwiftIcons)
 
 ## License
