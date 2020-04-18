@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.dependency 'GrowingTextView', '0.7.2'
   s.dependency 'IQKeyboardManagerSwift', '6.5.5'
   s.dependency 'JSSAlertView'
-  s.dependency 'Parchment', '2.0.1'
+  s.dependency 'Parchment', '2.3.0'
   s.dependency 'SwiftIcons'
 end

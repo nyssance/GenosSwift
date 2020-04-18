@@ -42,10 +42,8 @@ open class CollectionViewListController<D: Decodable, T: Decodable, V: UICollect
     open override func onDisplay(data: D) {
         nextPage += 1
         page = nextPage - 1
-        if !hasPrevious() { // 如果无上一页, 完全重载
-            adapter.removeAll()
-        }
-        adapter.addAll(transformListFromData(data: data))
+        let items = transformListFromData(data: data)
+        hasPrevious() ? adapter.addList(items) : adapter.submitList(items) // 如果无翻页或为第一页, 完全重载
         super.onDisplay(data: data)
     }
 

@@ -21,12 +21,12 @@ open class BaseAdapter<T: Any> {
         list[indexPath.row]
     }
 
-    public func addAll(_ items: [T]) {
+    public func addList(_ items: [T]) {
         list += items
     }
 
-    public func removeAll(keepingCapacity: Bool = true) {
-        list.removeAll(keepingCapacity: keepingCapacity)
+    public func submitList(_ items: [T]) {
+        list = items
     }
 
     public func insert(_ index: Int, _ item: T) {
