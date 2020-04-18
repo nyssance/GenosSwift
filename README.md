@@ -34,17 +34,16 @@ pod 'Genos'
 - Swift
   - [Alamofire](https://github.com/Alamofire/Alamofire)
   - [DeviceKit](https://github.com/dennisweissmann/DeviceKit)
+  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager)
   - [Kingfisher](https://github.com/onevcat/Kingfisher)
-  - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver)
   - [SwiftDate](https://github.com/malcommac/SwiftDate)
-  - [SwiftEventBus](https://github.com/cesarferreira/SwiftEventBus)
+  - [SwiftIcons](https://github.com/ranesr/SwiftIcons)
+  - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver)
   - [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
 - UI Control
   - [GrowingTextView](https://github.com/KennethTsang/GrowingTextView)
-  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager)
   - [JSSAlertView](https://github.com/openstakes/JSSAlertView)
   - [Parchment](https://github.com/rechsteiner/Parchment)
-  - [SwiftIcons](https://github.com/ranesr/SwiftIcons)
 
 ## License
 
