@@ -7,7 +7,7 @@ import SwiftyUserDefaults
 public class Developer: TableViewDetail<String, Item, ItemRow> {
     // MARK: - 👊 Genos
 
-    public override func onCreate() {
+    override public func onCreate() {
         setNavigationBar(style: .default, from: "developer")
         items = [
             [
@@ -18,7 +18,7 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
         ]
     }
 
-    open override func onDisplayItem(item: Item, view: ItemRow, viewType: Int) {
+    override open func onDisplayItem(item: Item, view: ItemRow, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         switch item.name {
         case "debug":
@@ -38,7 +38,7 @@ public class Developer: TableViewDetail<String, Item, ItemRow> {
         }
     }
 
-    public override func onOpenItem(item: Item) {
+    override public func onOpenItem(item: Item) {
         switch item.name {
         case "version":
             navigateTo("version")

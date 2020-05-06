@@ -37,7 +37,7 @@ open class LoaderController<D: Decodable>: BaseController {
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    public final override func viewDidLoad() {
+    override public final func viewDidLoad() {
         super.viewDidLoad()
         loader = onCreateLoader()
         loader?.delegate = self // 设置监听
@@ -58,7 +58,7 @@ open class LoaderController<D: Decodable>: BaseController {
         }
     }
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if scrollView is UITableView {
             (scrollView as? UITableView)?.deselectAll(animated: animated) // tableView回滑时选中平滑消失
@@ -68,14 +68,14 @@ open class LoaderController<D: Decodable>: BaseController {
         }
     }
 
-    open override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if refreshMode == .didAppear {
             refresh()
         }
     }
 
-    open override func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isLoading = false // 还原, 主要针对表单提交 TODO 看看有没有更好的方法
     }

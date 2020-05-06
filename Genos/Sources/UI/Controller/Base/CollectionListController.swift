@@ -39,7 +39,7 @@ open class CollectionViewListController<D: Decodable, T: Decodable, V: UICollect
 
     // MARK: - 👊 Genos
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         nextPage += 1
         page = nextPage - 1
         let items = transformListFromData(data: data)
@@ -47,7 +47,7 @@ open class CollectionViewListController<D: Decodable, T: Decodable, V: UICollect
         super.onDisplay(data: data)
     }
 
-    public override func refresh() {
+    override public func refresh() {
         if var call = call {
             page = LIST_START_PAGE
             call.endpoint = call.endpoint.replacingOccurrences(of: "page=\(nextPage)", with: "page=\(page)")
@@ -72,7 +72,7 @@ open class CollectionViewListController<D: Decodable, T: Decodable, V: UICollect
 
     // MARK: - 🔹 UICollectionViewDelegate
 
-    public final override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    override public final func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         loadMore(indexPath)
         super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     }

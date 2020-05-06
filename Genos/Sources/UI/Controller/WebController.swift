@@ -22,7 +22,7 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
     // MARK: - 💖 生命周期 (Lifecycle)
 
     // swiftlint:disable function_body_length
-    public final override func viewDidLoad() {
+    override public final func viewDidLoad() {
         super.viewDidLoad()
         // TODO: 1. 识别再链出去的标题, 2. 增加再链出去的返回功能
         let config = WKWebViewConfiguration().apply {
@@ -112,12 +112,12 @@ open class WebController: BaseController, WKNavigationDelegate, WKUIDelegate, Ba
 
     // swiftlint:enable function_body_length
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setBackBarButtonItem(title: "") // 默认从WebController跳出去的都没有返回键
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.isToolbarHidden = true
     }

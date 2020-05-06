@@ -5,11 +5,11 @@
 open class SearchResultList<V: UITableViewCell>: TableViewList<SearchResult, V>, UISearchResultsUpdating {
     // MARK: - 👊 Genos
 
-    open override func onCreate() {
+    override open func onCreate() {
         adapter.submitList([SearchResult(title: "aaa"), SearchResult(title: "bbb"), SearchResult(title: "ccc")])
     }
 
-    open override func onDisplayItem(item: SearchResult, view: V, viewType: Int) {
+    override open func onDisplayItem(item: SearchResult, view: V, viewType: Int) {
         view.textLabel?.text = item.title
     }
 

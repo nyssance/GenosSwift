@@ -12,17 +12,17 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.rightBarButtonItem?.isEnabled = textView.text.isNotBlank
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.isToolbarHidden = true
     }
 
-    open override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Modal模式下键盘应该在界面之后出来, 根据设置中iCloud改名返回时键盘在界面消失后消失无所谓
         textView.becomeFirstResponder()
@@ -30,7 +30,7 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
 
     // MARK: - 👊 Genos
 
-    open override func onCreate() {
+    override open func onCreate() {
         super.onCreate()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(create))
@@ -47,7 +47,7 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         super.onDisplay(data: data)
         cancel()
     }
@@ -59,7 +59,7 @@ open class TextViewCreate<D: Decodable, T: Field, V: UITableViewCell>: CreateCon
     // MARK: - 💛 Action
 
     @objc
-    public override func create() {
+    override public func create() {
         if !isLoading {
             isLoading = true
             onCreate(string: textView.text.trim(set: .whitespacesAndNewlines)) // TODO: 是否精确

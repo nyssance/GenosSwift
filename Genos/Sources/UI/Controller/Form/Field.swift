@@ -35,7 +35,7 @@ public class Field: BaseItem {
 }
 
 public class CharField: Field {
-    public override init(name: String, icon: UIImage? = nil, title: String? = nil, enabled: Bool = true, placeholder: String? = nil, minLength: Int = 1, maxLength: Int = 30) {
+    override public init(name: String, icon: UIImage? = nil, title: String? = nil, enabled: Bool = true, placeholder: String? = nil, minLength: Int = 1, maxLength: Int = 30) {
         super.init(name: name, icon: icon, title: title, enabled: enabled, placeholder: placeholder, minLength: minLength, maxLength: maxLength)
     }
 }

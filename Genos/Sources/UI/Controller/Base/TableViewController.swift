@@ -15,7 +15,7 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    open override func viewDidLayoutSubviews() {
+    override open func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if [.light, .lightComplete].contains(getTheme().navigationBarStyle), listView.style == .grouped, listView.separatorStyle != .none {
             listView.visibleCells.first?.subviews.last?.isHidden = true
@@ -25,7 +25,7 @@ open class TableViewController<D: Decodable, T: Any, V: UITableViewCell>: AbsLis
 
     // MARK: - 👊 Genos
 
-    public override func onCreateListView() -> UITableView {
+    override public func onCreateListView() -> UITableView {
         let tableView = UITableView(frame: view.frame, style: tableViewStyle).apply { it in
             it.dataSource = self
             it.prefetchDataSource = self

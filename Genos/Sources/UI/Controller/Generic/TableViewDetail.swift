@@ -5,17 +5,17 @@
 open class TableViewDetail<D: Decodable, T: Item, V: UITableViewCell>: GroupedTableViewController<D, T, V> {
     // MARK: - 👊 Genos
 
-    public override func onBeforeCreate() {
+    override public func onBeforeCreate() {
         super.onBeforeCreate()
         tableViewCellStyle = .value1
     }
 
-    open override func onDisplayItem(item: T, view: V, viewType: Int) {
+    override open func onDisplayItem(item: T, view: V, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         view.accessoryType = item.enabled ? .none : .disclosureIndicator
     }
 
-    open override func onOpenItem(item: T) {
+    override open func onOpenItem(item: T) {
         if let dest = item.destination?.init() {
             if item.title.isNotBlank { // 如果item的title不为空, 用item的title
                 dest.title = item.title

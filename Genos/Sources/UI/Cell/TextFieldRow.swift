@@ -9,7 +9,7 @@ open class TextFieldRow: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         textLabel?.isHidden = true
         textField = UITextField(frame: CGRect(x: APP_THEME.padding, y: 0, width: frame.width - 2 * APP_THEME.padding, height: frame.height))

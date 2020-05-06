@@ -9,7 +9,7 @@ open class ItemRow: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // TODO: getCurrentController.getTheme
         textLabel?.font = APP_THEME.rowFont
@@ -29,17 +29,17 @@ open class ItemRow: UITableViewCell {
         badge.isHidden = true
     }
 
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         badge.frame.origin.x = (textLabel?.frame.maxX ?? 2 * APP_THEME.padding) + 8
     }
 
-    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    override open func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         badge.backgroundColor = .red
     }
 
-    open override var isHighlighted: Bool {
+    override open var isHighlighted: Bool {
         didSet {
             badge.backgroundColor = .red
         }

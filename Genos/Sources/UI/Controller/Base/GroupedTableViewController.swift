@@ -8,24 +8,24 @@ open class GroupedTableViewController<D: Decodable, T: BaseItem, V: UITableViewC
 
     // MARK: - 👊 Genos
 
-    public override func onBeforeCreate() {
+    override public func onBeforeCreate() {
         refreshControlMode = .never
         tableViewStyle = .grouped
     }
 
-    public override func onAfterCreate() {
+    override public func onAfterCreate() {
         adapter.transformItemsToList(items)
         if let data = getData() {
             mirror = Mirror(reflecting: data)
         }
     }
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         mirror = Mirror(reflecting: data) // TODO: 有没有更好的位置放这段代码
         super.onDisplay(data: data)
     }
 
-    open override func onDisplayItem(item: T, view: V, viewType: Int) {
+    override open func onDisplayItem(item: T, view: V, viewType: Int) {
         view.imageView?.image = item.icon
         view.textLabel?.text = item.title
         view.detailTextLabel?.text = item.subtitle

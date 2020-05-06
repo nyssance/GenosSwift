@@ -10,7 +10,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         view.endEditing(false) // 放在这里保证横滑键盘消失体验一致
     }
@@ -50,7 +50,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         textFields.last?.returnKeyType = .done
     }
 
-    open override func onViewCreated() {
+    override open func onViewCreated() {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.delegate = self
         tapGesture.isEnabled = false
@@ -63,7 +63,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         }
     }
 
-    open override func onDisplayItem(item: T, view: V, viewType: Int) {
+    override open func onDisplayItem(item: T, view: V, viewType: Int) {
         super.onDisplayItem(item: item, view: view, viewType: viewType)
         view.textLabel?.isHidden = true
         let textField = textFields[item.tag].apply { it in
@@ -75,12 +75,12 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         // TODO: highlight不可选
     }
 
-    final override func enable() {
+    override final func enable() {
         navigationItem.rightBarButtonItem?.isEnabled = onPreValiate(allowsAlert: false).0
         // TODO: 1. 键盘return也可以设为disabled 2. 增加长度检查
     }
 
-    open override func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: Parameters) {
+    override open func onPreValiate(allowsAlert: Bool) -> (Bool, parameters: Parameters) {
 //        adapter.getCurrentList().enumerated().forEach { i, field in
         for (i, field) in adapter.getCurrentList().enumerated() {
             let value = textFields[i].text.orEmpty().trim()
@@ -97,7 +97,7 @@ open class TextFieldForm<D: Decodable, T: Field, V: UITableViewCell>: FormContro
         return (true, parameters)
     }
 
-    open override func onSubmit(_ parameters: Parameters) {
+    override open func onSubmit(_ parameters: Parameters) {
         textFields.forEach { it in
             it.text = it.text?.trim() // 提交前trim, 边输入边trim中文会有问题
         }

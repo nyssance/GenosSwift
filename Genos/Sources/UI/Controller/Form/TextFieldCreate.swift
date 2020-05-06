@@ -5,7 +5,7 @@
 public class TextFieldCreate<D: Decodable, T: Field, V: UITableViewCell>: TextFieldForm<D, T, V> {
     // MARK: - 👊 Genos
 
-    public override func onDisplay(data: D) {
+    override public func onDisplay(data: D) {
         super.onDisplay(data: data)
         // cancel()
     }

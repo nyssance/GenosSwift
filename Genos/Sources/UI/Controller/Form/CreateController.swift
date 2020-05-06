@@ -5,7 +5,7 @@
 open class CreateController<D: Decodable, T: Field, V: UITableViewCell>: FormController<D, T, V> {
     // MARK: - 👊 Genos
 
-    public final override func onSubmit(_ parameters: Parameters) {
+    override public final func onSubmit(_ parameters: Parameters) {
         if call?.method != .post {
             showDebugAlert("创建接口建议使用POST, 目前为\(call?.method as Optional)")
         }

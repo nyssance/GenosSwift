@@ -13,7 +13,7 @@ open class IRepository<D: Decodable> {
 public class HttpRepository<D: Decodable>: IRepository<D> {
     public weak var delegate: LoaderController<D>?
 
-    public override func getData(_ call: Call<D>) {
+    override public func getData(_ call: Call<D>) {
         HttpUtil.request(call, success: { code, data in
             self.delegate?.onDataLoadSuccess(code, data: data)
         }, failure: { code, message in

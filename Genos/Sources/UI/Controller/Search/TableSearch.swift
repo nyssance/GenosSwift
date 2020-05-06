@@ -7,7 +7,7 @@ open class TableSearch: TableViewList<String, UITableViewCell>, UISearchBarDeleg
 
     // MARK: - 👊 Genos
 
-    open override func onViewCreated() {
+    override open func onViewCreated() {
         searchController = UISearchController()
         searchController.searchResultsUpdater = searchController.searchResultsController as? UISearchResultsUpdating
         searchController.searchBar.delegate = self

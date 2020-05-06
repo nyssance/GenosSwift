@@ -26,7 +26,7 @@ open class AbsListViewController<D: Decodable, T: Any, LV: UIScrollView, V: UIVi
         // fatalError("这个方法必须被覆盖")
     }
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         super.onDisplay(data: data)
         (listView as? ListViewConnectable)?.reloadData()
     }

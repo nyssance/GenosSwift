@@ -23,7 +23,7 @@ open class TableViewListController<D: Decodable, T: Decodable, V: UITableViewCel
 
     // MARK: - 👊 Genos
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         nextPage += 1
         page = nextPage - 1
         let items = transformListFromData(data: data)
@@ -31,7 +31,7 @@ open class TableViewListController<D: Decodable, T: Decodable, V: UITableViewCel
         super.onDisplay(data: data)
     }
 
-    public override func refresh() {
+    override public func refresh() {
         if var call = call {
             page = LIST_START_PAGE
             call.endpoint = call.endpoint.replacingOccurrences(of: "page=\(nextPage)", with: "page=\(page)")
@@ -54,7 +54,7 @@ open class TableViewListController<D: Decodable, T: Decodable, V: UITableViewCel
 
     // MARK: - 🔹 UITableViewDelegate
 
-    public final override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override public final func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         loadMore(indexPath)
         super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     }

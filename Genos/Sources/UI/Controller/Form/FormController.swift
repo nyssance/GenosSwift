@@ -14,7 +14,7 @@ open class FormController<D: Decodable, T: BaseItem, V: UITableViewCell>: Groupe
 
     // MARK: - 👊 Genos
 
-    open override func onCreate() {
+    override open func onCreate() {
         refreshMode = .never // 表单页默认不刷新
         submitButton = QuickButton(controller: self, y: getTheme().padding, title: "submit".locale, action: #selector(submit))
         if submitButtonType == .navigation {

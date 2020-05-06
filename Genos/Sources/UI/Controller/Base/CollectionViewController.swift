@@ -5,7 +5,7 @@
 open class CollectionViewController<D: Decodable, T: Decodable, V: UICollectionViewCell>: AbsListViewController<D, T, UICollectionView, V>, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: - 👊 Genos
 
-    public override func onCreateListView() -> UICollectionView {
+    override public func onCreateListView() -> UICollectionView {
         let layout = UICollectionViewFlowLayout().apply {
             $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }

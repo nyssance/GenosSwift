@@ -5,7 +5,6 @@
 import Photos
 
 import DeviceKit
-import SwiftEventBus
 
 open class BaseController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, Styleable {
     // MARK: - 🍀 属性
@@ -19,13 +18,13 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
         }
     }
 
-    open override var prefersStatusBarHidden: Bool { isStatusBarHidden }
+    override open var prefersStatusBarHidden: Bool { isStatusBarHidden }
 
     var UITag: String { String(describing: classForCoder).components(separatedBy: "<").first?.underscored() ?? "没有 UITag" }
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    public final override func loadView() {
+    override public final func loadView() {
         super.loadView()
         navigationController?.navigationBar.prefersLargeTitles = getTheme().prefersLargeTitles
         navigationItem.largeTitleDisplayMode = .always
@@ -43,7 +42,7 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
         onAfterCreate()
     }
 
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         log.verbose("==================== \(UITag) ====================")
         setNavigationBar(style: getTheme().navigationBarStyle, from: "base did load") // 导航栏风格
@@ -59,26 +58,19 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
 //            navigationController?.navigationBar.layer.addSublayer(progressView.layer)
             navigationController?.navigationBar.addSubview(progressView)
         }
-        SwiftEventBus.onMainThread(self, name: "mainEvent") { result in
-            self.onEventReceived(result?.object, userInfo: result?.userInfo)
-        } // 注册Event接收器
     }
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = nil // 还原返回菜单
         setBackBarButtonItem(title: getTheme().backItemStyle)
         Global.onViewWillAppear(self)
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         setNavigationBar(style: getTheme().navigationBarStyle, from: "base will disapper") // 恢复设定值
         Global.onViewWillDisappear(self)
-    }
-
-    deinit {
-        SwiftEventBus.unregister(self)
     }
 
     // MARK: - 💟 加载数据, 子类必须调用
@@ -88,12 +80,6 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
     open func onCreate() {}
 
     public func onAfterCreate() {}
-
-    open func onEventReceived(_ sender: Any?, userInfo: [AnyHashable: Any]?) {}
-
-    public func sendEvent(_ userInfo: [AnyHashable: Any]) {
-        SwiftEventBus.post("mainEvent", sender: self, userInfo: userInfo)
-    }
 }
 
 extension BaseController {

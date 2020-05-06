@@ -26,7 +26,7 @@ open class IndexListAdapter<T: Any>: BaseAdapter<T> {
         indexer.isEmpty ? getItemCount() : (section < indexer.count - 1 ? indexer[section + 1] : getItemCount()) - indexer[section]
     }
 
-    public override func getItem(_ indexPath: IndexPath) -> T {
+    override public func getItem(_ indexPath: IndexPath) -> T {
         // items.isEmpty ? super.getItem(indexPath) : items[indexPath.section][indexPath.row]
         indexer.isEmpty ? super.getItem(indexPath) : list[indexer[indexPath.section] + indexPath.row]
     }

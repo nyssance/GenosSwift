@@ -3,7 +3,7 @@
 //
 
 open class TableViewList<T: Decodable, V: UITableViewCell>: TableViewListController<[T], T, V> {
-    open override func transformListFromData(data: [T]) -> [T] {
+    override open func transformListFromData(data: [T]) -> [T] {
         data
     }
 }

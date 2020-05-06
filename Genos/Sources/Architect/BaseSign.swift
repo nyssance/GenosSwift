@@ -5,7 +5,7 @@
 open class BaseSign<D: Decodable, V: UITableViewCell>: TextFieldForm<D, Field, V> {
     // MARK: - 👊 Genos
 
-    open override func onCreate() {
+    override open func onCreate() {
         super.onCreate()
         items = [
             [
@@ -15,12 +15,12 @@ open class BaseSign<D: Decodable, V: UITableViewCell>: TextFieldForm<D, Field, V
         ]
     }
 
-    open override func onViewCreated() {
+    override open func onViewCreated() {
         super.onViewCreated()
         textFields.first?.resignFirstResponder()
     }
 
-    open override func onDisplay(data: D) {
+    override open func onDisplay(data: D) {
         super.onDisplay(data: data)
         onAuthorized(data)
     }

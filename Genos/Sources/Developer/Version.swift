@@ -5,7 +5,7 @@
 public class Version: TableViewDetail<String, Item, ItemRow> {
     // MARK: - 👊 Genos
 
-    public override func onCreate() {
+    override public func onCreate() {
         title = "version".locale
         items = [
             [

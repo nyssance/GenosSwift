@@ -3,7 +3,7 @@
 //
 
 open class List<T: Decodable, V: UICollectionViewCell>: CollectionViewListController<[T], T, V> {
-    open override func transformListFromData(data: [T]) -> [T] {
+    override open func transformListFromData(data: [T]) -> [T] {
         data
     }
 }

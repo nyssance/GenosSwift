@@ -7,12 +7,12 @@ open class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     // MARK: - 💖 生命周期 (Lifecycle)
 
-    public final override func loadView() {
+    override public final func loadView() {
         super.loadView()
         onCreate()
     }
 
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         tabBar.tintColor = APP_THEME.colorPrimary

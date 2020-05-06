@@ -3,7 +3,7 @@
 //
 
 public class HttpLoader<D: Decodable>: BaseLoader<D> {
-    public override func load(_ call: Call<D>, block: Bool = true) {
+    override public func load(_ call: Call<D>, block: Bool = true) {
         if block {
             // TODO: 待增加
         }
