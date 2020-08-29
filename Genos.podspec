@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.author           = { 'NY' => 'nyssance@icloud.com' }
   s.summary          = 'The BEST high-level framework for iOS by NY.'
   s.source           = { :git => 'https://github.com/nyssance/GenosSwift.git', :tag => s.version }
-  s.swift_versions   = ['5.0', '5.1', '5.2']
+  s.swift_versions   = ['5.0', '5.1', '5.2', '5.3']
   s.ios.deployment_target = '11.0'
   s.source_files     = 'Genos/Sources/**/*.swift'
   s.resource_bundles = { 'Genos' => ['Genos/Resources/**/*'] }
@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'GrowingTextView', '0.7.2'
   s.dependency 'JSSAlertView'
-  s.dependency 'Parchment', '2.3.0'
+  s.dependency 'Parchment', '2.4.0'
 end
