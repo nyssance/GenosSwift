@@ -5,6 +5,7 @@
 open class ItemRow: UITableViewCell {
     public var badge: UILabel!
 
+    @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -5,6 +5,7 @@
 open class TextFieldRow: UITableViewCell {
     public var textField: UITextField!
 
+    @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

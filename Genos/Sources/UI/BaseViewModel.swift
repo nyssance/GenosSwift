@@ -26,7 +26,7 @@ public class HttpRepository<D: Decodable>: IRepository<D> {
 
 open class BaseViewModel<D: Decodable>: ViewModel {
     public var data: D?
-    public var repo: IRepository<D> = IRepository<D>()
+    public var repo = IRepository<D>()
 
     public weak var delegate: LoaderController<D>?
 
