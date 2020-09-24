@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = { 'Genos' => ['Genos/Resources/**/*'] }
 
   s.dependency 'Alamofire', '~> 5.0'
-  s.dependency 'DeviceKit', '~> 3.0'
+  s.dependency 'DeviceKit', '~> 4.0'
   s.dependency 'IQKeyboardManagerSwift'
   s.dependency 'Kingfisher', '~> 5.0'
   s.dependency 'SwiftDate', '~> 6.0'
