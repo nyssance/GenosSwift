@@ -82,8 +82,8 @@ open class BaseController: UIViewController, UINavigationControllerDelegate, UII
     public func onAfterCreate() {}
 }
 
-extension BaseController {
-    public func startImageSheet(allowsEditing: Bool = false) {
+public extension BaseController {
+    func startImageSheet(allowsEditing: Bool = false) {
         let picker = UIImagePickerController()
         picker.allowsEditing = allowsEditing
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

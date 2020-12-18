@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'GrowingTextView', '0.7.2'
   s.dependency 'JSSAlertView'
-  s.dependency 'Parchment', '2.4.0'
+  s.dependency 'Parchment', '~> 3.0'
 end
