@@ -1,5 +1,7 @@
 # Genos 3 for iOS
 
+[![Swift versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fnyssance%2FGenosSwift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/nyssance/GenosSwift)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fnyssance%2FGenosSwift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/nyssance/GenosSwift)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 👊 Genos makes it easy to build better iOS applications quickly and with less application code.
