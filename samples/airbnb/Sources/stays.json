@@ -1,0 +1,418 @@
+[
+  {
+    "id": 1,
+    "title": "Cozy A-frame cabin",
+    "location": "Lake Tahoe, California",
+    "category": "Cabins",
+    "pricePerNight": 190,
+    "rating": 4.97,
+    "reviewCount": 226,
+    "host": "Emily",
+    "guests": 2,
+    "bedrooms": 1,
+    "beds": 2,
+    "amenities": [
+      "Breakfast",
+      "Wifi",
+      "Pool",
+      "Sea view",
+      "Air conditioning"
+    ],
+    "description": "Cozy A-frame cabin in Lake Tahoe. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay1-1/900/700",
+      "https://picsum.photos/seed/stay1-2/900/700",
+      "https://picsum.photos/seed/stay1-3/900/700"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Beachfront villa with pool",
+    "location": "Tulum, Mexico",
+    "category": "Beach",
+    "pricePerNight": 220,
+    "rating": 4.71,
+    "reviewCount": 147,
+    "host": "Marco",
+    "guests": 6,
+    "bedrooms": 3,
+    "beds": 1,
+    "amenities": [
+      "Breakfast",
+      "Kitchen",
+      "Pool",
+      "Washer",
+      "Air conditioning"
+    ],
+    "description": "Beachfront villa with pool in Tulum. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay2-1/900/700",
+      "https://picsum.photos/seed/stay2-2/900/700",
+      "https://picsum.photos/seed/stay2-3/900/700"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Loft in the old town",
+    "location": "Lisbon, Portugal",
+    "category": "City",
+    "pricePerNight": 78,
+    "rating": 4.79,
+    "reviewCount": 227,
+    "host": "Emily",
+    "guests": 2,
+    "bedrooms": 1,
+    "beds": 4,
+    "amenities": [
+      "Free parking",
+      "Hot tub",
+      "Air conditioning",
+      "Kitchen",
+      "Sea view"
+    ],
+    "description": "Loft in the old town in Lisbon. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay3-1/900/700",
+      "https://picsum.photos/seed/stay3-2/900/700",
+      "https://picsum.photos/seed/stay3-3/900/700"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Stone cottage among vineyards",
+    "location": "Tuscany, Italy",
+    "category": "Countryside",
+    "pricePerNight": 95,
+    "rating": 4.79,
+    "reviewCount": 310,
+    "host": "Sofia",
+    "guests": 2,
+    "bedrooms": 1,
+    "beds": 2,
+    "amenities": [
+      "Kitchen",
+      "Sea view",
+      "Breakfast",
+      "Hot tub",
+      "Wifi"
+    ],
+    "description": "Stone cottage among vineyards in Tuscany. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay4-1/900/700",
+      "https://picsum.photos/seed/stay4-2/900/700",
+      "https://picsum.photos/seed/stay4-3/900/700"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Treehouse hideaway",
+    "location": "Ubud, Bali",
+    "category": "Trending",
+    "pricePerNight": 140,
+    "rating": 4.75,
+    "reviewCount": 296,
+    "host": "Noah",
+    "guests": 4,
+    "bedrooms": 3,
+    "beds": 4,
+    "amenities": [
+      "Fireplace",
+      "Washer",
+      "Hot tub",
+      "Kitchen",
+      "Air conditioning"
+    ],
+    "description": "Treehouse hideaway in Ubud. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay5-1/900/700",
+      "https://picsum.photos/seed/stay5-2/900/700",
+      "https://picsum.photos/seed/stay5-3/900/700"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Modern desert dome",
+    "location": "Joshua Tree, California",
+    "category": "Trending",
+    "pricePerNight": 140,
+    "rating": 4.54,
+    "reviewCount": 177,
+    "host": "Ines",
+    "guests": 4,
+    "bedrooms": 3,
+    "beds": 2,
+    "amenities": [
+      "Breakfast",
+      "Kitchen",
+      "Sea view",
+      "Hot tub",
+      "Pool"
+    ],
+    "description": "Modern desert dome in Joshua Tree. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay6-1/900/700",
+      "https://picsum.photos/seed/stay6-2/900/700",
+      "https://picsum.photos/seed/stay6-3/900/700"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Canal-side studio",
+    "location": "Amsterdam, Netherlands",
+    "category": "City",
+    "pricePerNight": 120,
+    "rating": 4.88,
+    "reviewCount": 101,
+    "host": "Ines",
+    "guests": 4,
+    "bedrooms": 1,
+    "beds": 1,
+    "amenities": [
+      "Sea view",
+      "Washer",
+      "Breakfast",
+      "Fireplace",
+      "Free parking"
+    ],
+    "description": "Canal-side studio in Amsterdam. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay7-1/900/700",
+      "https://picsum.photos/seed/stay7-2/900/700",
+      "https://picsum.photos/seed/stay7-3/900/700"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Cliffside cave suite",
+    "location": "Santorini, Greece",
+    "category": "Beach",
+    "pricePerNight": 260,
+    "rating": 4.79,
+    "reviewCount": 257,
+    "host": "Marco",
+    "guests": 2,
+    "bedrooms": 2,
+    "beds": 3,
+    "amenities": [
+      "Kitchen",
+      "Wifi",
+      "Hot tub",
+      "Washer",
+      "Fireplace"
+    ],
+    "description": "Cliffside cave suite in Santorini. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay8-1/900/700",
+      "https://picsum.photos/seed/stay8-2/900/700",
+      "https://picsum.photos/seed/stay8-3/900/700"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Ski-in chalet",
+    "location": "Chamonix, France",
+    "category": "Cabins",
+    "pricePerNight": 260,
+    "rating": 4.64,
+    "reviewCount": 221,
+    "host": "Amara",
+    "guests": 2,
+    "bedrooms": 3,
+    "beds": 2,
+    "amenities": [
+      "Free parking",
+      "Kitchen",
+      "Fireplace",
+      "Wifi",
+      "Sea view"
+    ],
+    "description": "Ski-in chalet in Chamonix. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay9-1/900/700",
+      "https://picsum.photos/seed/stay9-2/900/700",
+      "https://picsum.photos/seed/stay9-3/900/700"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Rice-terrace bungalow",
+    "location": "Sapa, Vietnam",
+    "category": "Countryside",
+    "pricePerNight": 165,
+    "rating": 4.56,
+    "reviewCount": 150,
+    "host": "Noah",
+    "guests": 4,
+    "bedrooms": 3,
+    "beds": 1,
+    "amenities": [
+      "Free parking",
+      "Fireplace",
+      "Air conditioning",
+      "Hot tub",
+      "Breakfast"
+    ],
+    "description": "Rice-terrace bungalow in Sapa. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay10-1/900/700",
+      "https://picsum.photos/seed/stay10-2/900/700",
+      "https://picsum.photos/seed/stay10-3/900/700"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Lighthouse keeper's house",
+    "location": "Cornwall, England",
+    "category": "Trending",
+    "pricePerNight": 120,
+    "rating": 4.91,
+    "reviewCount": 466,
+    "host": "Liam",
+    "guests": 4,
+    "bedrooms": 2,
+    "beds": 3,
+    "amenities": [
+      "Pool",
+      "Free parking",
+      "Kitchen",
+      "Fireplace",
+      "Air conditioning"
+    ],
+    "description": "Lighthouse keeper's house in Cornwall. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay11-1/900/700",
+      "https://picsum.photos/seed/stay11-2/900/700",
+      "https://picsum.photos/seed/stay11-3/900/700"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Floating lake house",
+    "location": "Bled, Slovenia",
+    "category": "Beach",
+    "pricePerNight": 140,
+    "rating": 4.83,
+    "reviewCount": 30,
+    "host": "Ines",
+    "guests": 6,
+    "bedrooms": 1,
+    "beds": 2,
+    "amenities": [
+      "Hot tub",
+      "Wifi",
+      "Free parking",
+      "Pool",
+      "Breakfast"
+    ],
+    "description": "Floating lake house in Bled. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay12-1/900/700",
+      "https://picsum.photos/seed/stay12-2/900/700",
+      "https://picsum.photos/seed/stay12-3/900/700"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Courtyard riad",
+    "location": "Marrakesh, Morocco",
+    "category": "City",
+    "pricePerNight": 190,
+    "rating": 4.8,
+    "reviewCount": 187,
+    "host": "Sofia",
+    "guests": 6,
+    "bedrooms": 1,
+    "beds": 3,
+    "amenities": [
+      "Sea view",
+      "Air conditioning",
+      "Breakfast",
+      "Pool",
+      "Fireplace"
+    ],
+    "description": "Courtyard riad in Marrakesh. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay13-1/900/700",
+      "https://picsum.photos/seed/stay13-2/900/700",
+      "https://picsum.photos/seed/stay13-3/900/700"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Glass cabin under the aurora",
+    "location": "Rovaniemi, Finland",
+    "category": "Cabins",
+    "pricePerNight": 95,
+    "rating": 4.74,
+    "reviewCount": 229,
+    "host": "Emily",
+    "guests": 2,
+    "bedrooms": 1,
+    "beds": 2,
+    "amenities": [
+      "Fireplace",
+      "Free parking",
+      "Kitchen",
+      "Sea view",
+      "Hot tub"
+    ],
+    "description": "Glass cabin under the aurora in Rovaniemi. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay14-1/900/700",
+      "https://picsum.photos/seed/stay14-2/900/700",
+      "https://picsum.photos/seed/stay14-3/900/700"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Farm stay with alpacas",
+    "location": "Queenstown, New Zealand",
+    "category": "Countryside",
+    "pricePerNight": 78,
+    "rating": 4.55,
+    "reviewCount": 314,
+    "host": "Sofia",
+    "guests": 6,
+    "bedrooms": 1,
+    "beds": 2,
+    "amenities": [
+      "Breakfast",
+      "Wifi",
+      "Kitchen",
+      "Air conditioning",
+      "Fireplace"
+    ],
+    "description": "Farm stay with alpacas in Queenstown. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay15-1/900/700",
+      "https://picsum.photos/seed/stay15-2/900/700",
+      "https://picsum.photos/seed/stay15-3/900/700"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Historic machiya townhouse",
+    "location": "Kyoto, Japan",
+    "category": "City",
+    "pricePerNight": 220,
+    "rating": 4.57,
+    "reviewCount": 153,
+    "host": "Amara",
+    "guests": 6,
+    "bedrooms": 2,
+    "beds": 3,
+    "amenities": [
+      "Kitchen",
+      "Breakfast",
+      "Fireplace",
+      "Pool",
+      "Air conditioning"
+    ],
+    "description": "Historic machiya townhouse in Kyoto. Wake up to the view, slow mornings and everything within reach. The space fits your whole crew and the neighbourhood is walkable to food and coffee.",
+    "images": [
+      "https://picsum.photos/seed/stay16-1/900/700",
+      "https://picsum.photos/seed/stay16-2/900/700",
+      "https://picsum.photos/seed/stay16-3/900/700"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+name: TikTok
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  Genos:
+    path: ../..
+targets:
+  TikTok:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    dependencies:
+      - package: Genos
+    info:
+      path: Sources/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: TikTok Sample

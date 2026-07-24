@@ -1,0 +1,22 @@
+name: Instagram
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  Genos:
+    path: ../..
+targets:
+  Instagram:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    dependencies:
+      - package: Genos
+    info:
+      path: Sources/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: Instagram Sample
+        CFBundleURLTypes:
+          - CFBundleURLSchemes: [genos-instagram]

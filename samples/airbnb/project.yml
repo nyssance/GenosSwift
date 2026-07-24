@@ -1,0 +1,23 @@
+name: Airbnb
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  Genos:
+    path: ../..
+targets:
+  Airbnb:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    dependencies:
+      - package: Genos
+    info:
+      path: Sources/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: Airbnb Sample
+        CFBundleURLTypes:
+          - CFBundleURLSchemes: [genos-airbnb]
