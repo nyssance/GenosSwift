@@ -29,6 +29,27 @@ struct PagerTests {
     #expect(pager.items.isEmpty)
   }
 
+  @Test func staleLoadMoreIsDiscardedByRefresh() async {
+    let (started, startedContinuation) = AsyncStream.makeStream(of: Void.self)
+    let (release, releaseContinuation) = AsyncStream.makeStream(of: Void.self)
+    let pager = Pager { page in
+      if page == Global.listStartPage + 1 {
+        // Signal the test, then hold the append until the refresh has finished.
+        startedContinuation.yield()
+        for await _ in release { break }
+      }
+      return ["page \(page)"]
+    }
+    await pager.refresh()
+    let loadMore = Task { await pager.loadMore() }
+    for await _ in started { break }
+    await pager.refresh()
+    releaseContinuation.yield()
+    await loadMore.value
+    #expect(pager.items == ["page \(Global.listStartPage)"])
+    #expect(pager.appendState == nil)
+  }
+
   @Test func failureBecomesErrorState() async {
     struct Failure: Error {}
     let pager = Pager<String> { _ in throw Failure() }

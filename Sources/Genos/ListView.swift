@@ -31,12 +31,18 @@ public struct ListView<Item: Identifiable, Row: View>: View {
         ProgressView()
       case .error(let error):
         ContentUnavailableView {
-          Label("Load failed", systemImage: "exclamationmark.triangle")
+          Label {
+            Text("Load failed", bundle: .module)
+          } icon: {
+            Image(systemName: "exclamationmark.triangle")
+          }
         } description: {
           Text(error.localizedDescription)
         } actions: {
-          Button("Retry") {
+          Button {
             Task { await pager.refresh() }
+          } label: {
+            Text("Retry", bundle: .module)
           }
         }
       case .success:
@@ -62,8 +68,10 @@ public struct ListView<Item: Identifiable, Row: View>: View {
             ProgressView().frame(maxWidth: .infinity)
           }
           if case .error = pager.appendState {
-            Button("Retry") {
+            Button {
               Task { await pager.loadMore() }
+            } label: {
+              Text("Retry", bundle: .module)
             }
             .frame(maxWidth: .infinity)
           }

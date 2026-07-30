@@ -15,8 +15,11 @@ public struct GenosTab: Identifiable {
   let systemImage: String
   let root: AnyView
 
-  public init(_ title: String, systemImage: String, @ViewBuilder root: () -> some View) {
-    id = title
+  /// `id` defaults to the title; pass an explicit one when two tabs share a title.
+  public init(
+    _ title: String, systemImage: String, id: String? = nil, @ViewBuilder root: () -> some View
+  ) {
+    self.id = id ?? title
     self.title = title
     self.systemImage = systemImage
     self.root = AnyView(root())
@@ -39,6 +42,10 @@ public struct GenosApp: View {
 
   @State private var selection = 0
   @State private var paths: [NavigationPath]
+  /// A cold-start deep link can arrive before navigation restore has run; it is
+  /// buffered here so `restoreNavigation()` cannot clobber the push.
+  @State private var restored = false
+  @State private var pendingDeepLink: (any NavKey)?
   @SceneStorage("genos.navigation") private var navigationData: Data?
   @Environment(\.scenePhase) private var scenePhase
 
@@ -72,13 +79,20 @@ public struct GenosApp: View {
       }
     }
     .onOpenURL { url in
-      if let key = Router.resolve(url) {
+      guard let key = Router.resolve(url) else { return }
+      if restored {
         paths[selection].append(key)
+      } else {
+        pendingDeepLink = key
       }
     }
     .task {
       restoreNavigation()
-      if let deepLink, paths[selection].isEmpty {
+      restored = true
+      if let pending = pendingDeepLink {
+        pendingDeepLink = nil
+        paths[selection].append(pending)
+      } else if let deepLink, paths[selection].isEmpty {
         paths[selection].append(deepLink)
       }
     }

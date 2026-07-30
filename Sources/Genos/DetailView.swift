@@ -27,12 +27,18 @@ public struct DetailView<T, Content: View>: View {
         ProgressView()
       case .error(let error):
         ContentUnavailableView {
-          Label("Load failed", systemImage: "exclamationmark.triangle")
+          Label {
+            Text("Load failed", bundle: .module)
+          } icon: {
+            Image(systemName: "exclamationmark.triangle")
+          }
         } description: {
           Text(error.localizedDescription)
         } actions: {
-          Button("Retry") {
+          Button {
             Task { await loader.refresh() }
+          } label: {
+            Text("Retry", bundle: .module)
           }
         }
       case .success(let data):

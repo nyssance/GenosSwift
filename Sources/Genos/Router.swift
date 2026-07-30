@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Foundation
+import Synchronization
 
 /// A navigation key: a plain value the application owns.
 /// Screens, deep links and REST endpoints share one vocabulary:
@@ -10,22 +11,33 @@ public protocol NavKey: Hashable, Codable {}
 
 /// Deep link routing: URL ↔ NavKey, convention based, same as Genos for Android.
 public enum Router {
-  private struct Route {
+  private struct Route: Sendable {
     let segments: [String]
-    let create: ([String: String]) -> any NavKey
+    let create: @Sendable ([String: String]) -> any NavKey
   }
 
-  private nonisolated(unsafe) static var routes: [Route] = []
+  private static let routes = Mutex<[Route]>([])
 
-  public static func route(_ pattern: String, create: @escaping ([String: String]) -> any NavKey) {
-    routes.append(Route(segments: pattern.split(separator: "/").map(String.init), create: create))
+  public static func route(
+    _ pattern: String, create: @escaping @Sendable ([String: String]) -> any NavKey
+  ) {
+    let route = Route(
+      segments: pattern.split(separator: "/").map(String.init), create: create)
+    routes.withLock { $0.append(route) }
   }
 
+  /// Resolves a deep link URL against the registered routes. Query items are merged
+  /// into the parameters passed to `create`; on a name clash the path parameter wins.
   public static func resolve(_ url: URL) -> (any NavKey)? {
     guard url.scheme == Global.appScheme else { return nil }
     let segments = [url.host()].compactMap(\.self) + url.pathComponents.dropFirst()
-    for route in routes where route.segments.count == segments.count {
-      var parameters: [String: String] = [:]
+    var query: [String: String] = [:]
+    for item in URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? [] {
+      query[item.name] = item.value ?? ""
+    }
+    let candidates = routes.withLock { $0 }
+    for route in candidates where route.segments.count == segments.count {
+      var parameters = query
       var matched = true
       for (expected, actual) in zip(route.segments, segments) {
         if expected.hasPrefix("{"), expected.hasSuffix("}") {
@@ -42,6 +54,6 @@ public enum Router {
 
   /// Test support: clears all registered routes.
   static func reset() {
-    routes.removeAll()
+    routes.withLock { $0.removeAll() }
   }
 }

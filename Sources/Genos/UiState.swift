@@ -7,3 +7,5 @@ public enum UiState<T> {
   case success(T)
   case error(Error)
 }
+
+extension UiState: Sendable where T: Sendable {}

@@ -17,6 +17,10 @@ private struct Comment: NavKey {
   let commentId: String
 }
 
+private struct Search: NavKey {
+  let query: String
+}
+
 @Suite(.serialized)
 struct RouterTests {
   init() {
@@ -27,6 +31,7 @@ struct RouterTests {
     Router.route("posts/{postId}/comments/{commentId}") {
       Comment(postId: $0["postId"]!, commentId: $0["commentId"]!)
     }
+    Router.route("search") { Search(query: $0["q"] ?? "") }
   }
 
   @Test func staticRouteMatches() {
@@ -51,6 +56,18 @@ struct RouterTests {
 
   @Test func unknownPathResolvesToNothing() {
     #expect(Router.resolve(URL(string: "genos-test://stays")!) == nil)
+  }
+
+  @Test func queryItemsArePassedThrough() {
+    #expect(
+      Router.resolve(URL(string: "genos-test://search?q=swift")!) as? Search
+        == Search(query: "swift"))
+  }
+
+  @Test func pathParameterWinsOverQueryOnNameClash() {
+    #expect(
+      Router.resolve(URL(string: "genos-test://users/emilys?username=other")!) as? UserDetail
+        == UserDetail(username: "emilys"))
   }
 
   @Test func segmentCountMustMatch() {
