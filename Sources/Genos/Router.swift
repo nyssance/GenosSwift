@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Foundation
-import Synchronization
+import os
 
 /// A navigation key: a plain value the application owns.
 /// Screens, deep links and REST endpoints share one vocabulary:
@@ -16,7 +16,8 @@ public enum Router {
     let create: @Sendable ([String: String]) -> any NavKey
   }
 
-  private static let routes = Mutex<[Route]>([])
+  // OSAllocatedUnfairLock rather than Mutex: see the note on `Global.storage`.
+  private static let routes = OSAllocatedUnfairLock(initialState: [Route]())
 
   public static func route(
     _ pattern: String, create: @escaping @Sendable ([String: String]) -> any NavKey

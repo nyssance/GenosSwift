@@ -2,12 +2,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Foundation
-import Synchronization
+import os
 
 /// Global configuration, the same vocabulary as Genos for Android.
 /// Written once at startup, read anywhere: every field is safe to access from any
 /// thread — the main actor writes them, `Http` reads them off the main actor — so
-/// the storage sits behind a `Mutex`.
+/// the storage sits behind a lock.
+///
+/// `OSAllocatedUnfairLock` rather than `Synchronization.Mutex`: the compiler
+/// statically initializes `Mutex` globals at compile time, and on device builds
+/// that zeroed out `Storage`'s member defaults (empty strings, zero ints) —
+/// a heap-allocated lock cannot be constant-folded, so the initializer runs.
 public enum Global {
   private struct Storage: Sendable {
     var appScheme = ""
@@ -19,7 +24,7 @@ public enum Global {
     var onUnauthorized: @Sendable () -> Void = {}
   }
 
-  private static let storage = Mutex(Storage())
+  private static let storage = OSAllocatedUnfairLock(initialState: Storage())
 
   /// The URL scheme deep links use, e.g. `genos-sample`.
   public static var appScheme: String {

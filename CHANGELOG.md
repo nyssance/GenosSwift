@@ -4,6 +4,20 @@ All notable changes to Genos for iOS are documented in this file. The format fol
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [3.0.0-alpha03] - 2026-07-30
+
+### Fixed
+
+- **Critical:** launch crash on device Release builds. The compiler statically
+  initializes `Synchronization.Mutex` globals at compile time, and on device
+  builds this zeroed out the guarded state's member defaults — `Global.authHeader`
+  became an empty string, crashing CFNetwork inside
+  `URLRequest.setValue(_:forHTTPHeaderField:)` on the first authenticated request
+  (`listStartPage`/`listPageSize` were likewise zeroed). `Global` and `Router`
+  storage now sits behind `OSAllocatedUnfairLock`, whose heap-allocated state
+  cannot be constant-folded. Simulator builds were unaffected, which is why CI
+  did not catch it.
+
 ## [3.0.0-alpha02] - 2026-07-30
 
 ### Added
